@@ -12,7 +12,7 @@ func main() {
 	t = template.Must(template.ParseFiles("./index.html"))
 
 	// Prise en compte les fichiers dans le dossier static (CSS et fichiers .txt)
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("../css"))))
 
 	//Exécution de la fonction home lorsque le serveur est ouvert
 	//http.HandleFunc("/", home)

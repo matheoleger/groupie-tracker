@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Kanit';
+}
+
+/* NAVBAR */
+
+.logo {
+    height: 100px;
+    padding-top: 10px;
+    width: auto;
+    margin-right: auto;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px 2%;
+    text-transform: uppercase;
+    color: #efc57c;
+}
+
+nav li {
+    display: inline-block;
+    padding: 0px 20px;
+    font-size: 23px;
+}
+
+header input {
+    margin-left: 20px;
+    margin-bottom: 8px;
+    padding: 5px;
+}
+
+a {
+    position: relative;
+    display: inline-block;
+    color: #523746;
+    overflow: hidden;
+    background: linear-gradient(to right, #523746, #523746 50%, #84babc 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 0.5s ease;
+    /* text-decoration: none; // text decorations are clipped in WebKit browsers */
+    text-decoration: none;
+}
+
+a:hover {
+    background-position: 0 100%;
+}

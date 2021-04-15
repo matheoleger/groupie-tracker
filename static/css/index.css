@@ -1,11 +1,14 @@
 * {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body {
     font-family: 'Kanit';
 }
+
 
 /* NAVBAR */
 
@@ -17,12 +20,24 @@ body {
 }
 
 header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 5px 2%;
+    /* padding: 5px 2%; */
     text-transform: uppercase;
     color: #efc57c;
+    padding: 30px 50px;
+    transition: 0.6s;
+    z-index: 100;
+}
+
+header.sticky {
+    padding: 10px 50px;
+    background: rgba(0, 0, 0, 0.589);
+    
 }
 
 nav li {
@@ -32,9 +47,19 @@ nav li {
 }
 
 header input {
+    font-family: inherit;
+    color:#84babc;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px#84babc solid;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
     margin-left: 20px;
+    margin-right: 80px;
     margin-bottom: 8px;
-    padding: 5px;
+    padding-right: -10px;
+    background: none;
 }
 
 a {
@@ -55,4 +80,21 @@ a {
 
 a:hover {
     background-position: 0 100%;
+}
+
+/*PARALLAX*/
+video.bg-video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+}
+
+.regular {
+    position: relative;
+    background-color: aliceblue;
+    text-align: center;
+    padding-top: 10vh;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
 }

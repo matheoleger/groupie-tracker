@@ -1,3 +1,21 @@
 {{ define "body" }}
-<h1> test mamen</h1>
+<div class="parallax">
+    <div class="parallax__layer parallax-bg">
+        <video autoplay mute loop class="bg-video">
+            <source src="../static/videos/bg_groupie-tracker-v2.webm" type="video/webm">
+        </video>        
+    </div>
+    <section class="parallax__layer regular">
+        <h1>Test text après la vidéo</h1>
+    </section>
+    <script type="text/javascript">
+        window.addEventListener('scroll', () => {
+            //pour le parallax
+            const parallax = document.querySelector('.parallax-bg');
+            let scrollPosition = window.pageYOffset;
+
+            parallax.style.transform = 'translateY(' + scrollPosition * .5 + 'px)';
+        })
+    </script>
+</div>
 {{ end }}

@@ -1,4 +1,5 @@
 {{ define "body" }}
+<h1 id="subtitle-home">Find your favorite artist.</h1>
 <div class="parallax">
     <div class="parallax__layer parallax-bg">
         <video autoplay mute loop class="bg-video">
@@ -14,7 +15,7 @@
             const parallax = document.querySelector('.parallax-bg');
             let scrollPosition = window.pageYOffset;
 
-            parallax.style.transform = 'translateY(' + scrollPosition * .5 + 'px)';
+            parallax.style.transform = `translateY(${scrollPosition * .5}px)`;
         })
     </script>
 </div>

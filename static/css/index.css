@@ -98,3 +98,13 @@ video.bg-video {
     height: 100vh;
     z-index: 2;
 }
+
+#subtitle-home {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(224, 224, 224);
+    font-size: 50px;
+    z-index: 1;
+}

@@ -23,7 +23,7 @@ body {
 }
 
 header {
-    position: sticky;
+    position: fixed;
     top: 0px;
     width: 100%;
     display: flex;

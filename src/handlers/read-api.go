@@ -1,4 +1,4 @@
-package handlers
+/*package handlers
 
 import (
 	"encoding/json"
@@ -8,15 +8,13 @@ import (
 	"strconv"
 )
 
-const APIArtist string = "https://groupietrackers.herokuapp.com/api/artists"
 
-const ALLJSONURL string = "https://groupietrackers.herokuapp.com/api/artists/all.json"
 
 type band struct {
 	ID int `json:"id"`
 	/*Image struct {
 		Xs string
-	}*/
+	}
 	Name string `json:"name"`
 }
 
@@ -100,5 +98,51 @@ func GetArtist(firstID int, numArtist int) []band {
 			// DEBUG HERE
 		}
 	}
+	fmt.Println(ArtistList)
 	return ArtistList
+}
+
+func main() {
+	GetArtist(1, 200)
+}
+*/
+
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"os"
+)
+
+const APIArtist string = "https://groupietrackers.herokuapp.com/api/"
+
+const ALLJSONURL string = "https://groupietrackers.herokuapp.com/api/artists/all.json"
+
+func main() {
+	/*response, err := http.Get(APIArtist)
+
+	if err != nil {
+		fmt.Print(err.Error())
+		os.Exit(1)
+	}*/
+	response := getAPI("artists")
+
+	responseData, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(responseData))
+
+}
+
+func getAPI(s string) *http.Response {
+	reponse, err := http.Get(APIArtist + s)
+	if err != nil {
+		fmt.Print(err.Error())
+		os.Exit(-1)
+	}
+	return (reponse)
 }

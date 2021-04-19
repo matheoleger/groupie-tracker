@@ -30,7 +30,7 @@ func DEfaultPage(w http.ResponseWriter, r *http.Request) {
 	var firstIDNewPAge int
 	fmt.Print(APIArtist)
 
-	if r.URL.Path != "/information" {
+	if r.URL.Path != "/artists" {
 		http.NotFound(w, r)
 		return
 	}

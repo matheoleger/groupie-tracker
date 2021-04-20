@@ -112,6 +112,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -151,6 +152,23 @@ func main() {
 	}
 	fmt.Printf("Results: %v\n", data[51])
 
+}
+
+func golangHttpHandler(w http.ResponseWriter, r *http.Request, data []band) {
+	golangVAr := data
+	files := findPathFiles("./templates/artists.html")
+	templ, err := template.ParseFiles(files...)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal serveur Error", 500)
+		return
+	}
+	err = templ.Execute(w, golangVAr)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal serveur Error", 500)
+		return
+	}
 }
 
 func getAPI(s string) *http.Response {

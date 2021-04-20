@@ -107,9 +107,10 @@ func main() {
 }
 */
 
-package main
+package handlers
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -120,6 +121,14 @@ import (
 const APIArtist string = "https://groupietrackers.herokuapp.com/api/"
 
 const ALLJSONURL string = "https://groupietrackers.herokuapp.com/api/artists/all.json"
+
+type band struct {
+	ID           int      `json:"id"`
+	Name         string   `json:"name"`
+	Members      []string `json:"members"`
+	CreationDAte int      `json:"creationDate"`
+	FirstAlbum   string   `json:"firstAlbum"`
+}
 
 func main() {
 	/*response, err := http.Get(APIArtist)
@@ -134,7 +143,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(responseData))
+	//fmt.Println(string(responseData))
+	var data []band
+	secondErr := json.Unmarshal(responseData, &data)
+	if secondErr != nil {
+		fmt.Println(err)
+	}
+	fmt.Printf("Results: %v\n", data[51])
 
 }
 

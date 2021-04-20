@@ -13,6 +13,7 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	http.HandleFunc("/", handlers.Home)
-	http.HandleFunc("/location", handlers.Location)
+	http.HandleFunc("/locations", handlers.Location)
+	http.HandleFunc("/artists", handlers.Artists)
 	http.ListenAndServe(":8080", nil)
 }

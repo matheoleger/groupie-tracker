@@ -8,13 +8,13 @@ import (
 	usefulFiles ".."
 )
 
-func Location(w http.ResponseWriter, r *http.Request) {
+func Artists(w http.ResponseWriter, r *http.Request) {
 
-	dataJson := usefulFiles.GetApi("locations")
+	dataJson := usefulFiles.GetApi("artists")
 
 	//ParseFiles très important : on doit y mettre toutes les pages qui doivent être chargé et donc choisir en fonction de celle qui doit l'être
 	// le choix doit être fait avant le ParseFiles
-	files := findPathFiles("./templates/locations.html")
+	files := findPathFiles("./templates/artists.html")
 
 	// ts, err := template.ParseFiles("./templates/layout.html", "./templates/location.html")
 	ts, err := template.ParseFiles(files...)

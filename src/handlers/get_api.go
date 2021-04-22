@@ -1,4 +1,4 @@
-package usefulFiles
+package handlers
 
 import (
 	"fmt"
@@ -8,8 +8,9 @@ import (
 	"os"
 )
 
-func GetApi(path string) []byte {
-	response, err := http.Get("https://groupietrackers.herokuapp.com/api/" + path)
+func GetApi(w http.ResponseWriter, r *http.Request) {
+
+	response, err := http.Get("https://groupietrackers.herokuapp.com" + r.URL.Path)
 
 	if err != nil {
 		fmt.Print(err.Error())
@@ -21,5 +22,5 @@ func GetApi(path string) []byte {
 		log.Fatal(err)
 	}
 
-	return responseData
+	w.Write(responseData)
 }

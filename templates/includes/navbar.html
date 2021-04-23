@@ -4,12 +4,26 @@
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="/information">Information</a></li>
-            <li><a href="/location">Localisation</a></li>
+            <li><a href="/artists">Information</a></li>
+            <li><a href="/locations">Localisation</a></li>
             <!-- <li><a href="#">À propos</a></li> -->
             
         </ul>
     </nav>
-    <input type="text">
+    <input type="text" placeholder="Rechercher...">
 </header>
+<script type="text/javascript">
+    window.addEventListener('scroll', () => {
+        console.log("scrolling duuuude")
+        let header = document.querySelector("header");
+        header.classList.toggle("sticky", window.scrollY > 0);
+
+        //pour le parallax
+        const parallax = document.querySelector('.parallax-bg');
+        let scrollPosition = window.pageYOffset;
+
+        parallax.style.transform = 'translateY(' + scrollPosition * .5 + 'px)';
+    })
+
+</script>
 {{ end }}

@@ -99,7 +99,44 @@ fetch(fetchSearchElements[1])
 
 
 const search = (k) => {
-    console.log(k.key)
+    // console.log(k.key)
+    
+    let searchbar = document.querySelector('#searchbar');
+    console.log(searchbar.value)
+
+    let regex = RegExp(searchbar.value.toUpperCase());
+
+    // if (regex.test(el.children[1].textContent.toUpperCase()) == true) {
+
+    for (element of searchArtistsData) {
+        let divEl = document.getElementById(element.id)
+
+        if (regex.test(element.name.toUpperCase()) == true) {
+            if(divEl == null || element.id != divEl.id) {
+                displayAnElement(element)
+            }
+            
+        } else {
+
+            if (divEl != null) {
+                divEl.remove()
+            }
+            
+        }
+    }
+
+}
+
+const displayAnElement = (element) => {
+    console.log(element.name)
+
+    const listAutocomp = document.querySelector('.list-autocomp')
+    let divEl = document.createElement("div")
+    divEl.setAttribute('id', element.id)
+    let textEl = document.createTextNode(element.name)
+
+    divEl.appendChild(textEl)
+    listAutocomp.append(divEl)
 }
 
 // searchbar = document.querySelector('#searchbar')

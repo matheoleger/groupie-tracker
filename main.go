@@ -14,7 +14,7 @@ func main() {
 	// http.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("./static/img")))) // récupère tous les fichiers "externe" dans "images"
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
-	http.HandleFunc("/", handlers.Home)
+	http.HandleFunc("/", handlers.Global)
 	http.HandleFunc("/locations", handlers.Location)
 	http.HandleFunc("/artists", handlers.Artists)
 

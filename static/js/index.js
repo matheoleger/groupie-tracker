@@ -1,5 +1,9 @@
 // file = "index"
 
-// fetch("/api/artists")
-// .then(response => response.json())
-// .then(loadData)
+const loadIndexData = (response) => {
+    console.log(response)
+}
+
+fetch("/api/artists/1")
+.then(response => response.json())
+.then(loadData)

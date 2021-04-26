@@ -4,13 +4,11 @@ import (
 	"log"
 	"net/http"
 	"text/template"
-
-	usefulFiles ".."
 )
 
 func Artists(w http.ResponseWriter, r *http.Request) {
 
-	dataJson := usefulFiles.GetApi("artists")
+	// dataJson := usefulFiles.GetApi()
 
 	//ParseFiles très important : on doit y mettre toutes les pages qui doivent être chargé et donc choisir en fonction de celle qui doit l'être
 	// le choix doit être fait avant le ParseFiles
@@ -25,5 +23,5 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ts.Execute(w, string(dataJson))
+	ts.Execute(w, nil)
 }

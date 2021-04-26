@@ -9,12 +9,15 @@
             <!-- <li><a href="#">À propos</a></li> -->
             
         </ul>
-    </nav>
-    <input type="text" placeholder="Rechercher..." id="searchbar" onkeyup="search(event)">
-    <div class="list-autocomp">
         
+    </nav>
+    <div class="search-container">
+        <input type="text" placeholder="Rechercher..." id="searchbar" onkeyup="search(event)">
+        <div class="list-autocomp"></div>
     </div>
+
 </header>
+
 <script type="text/javascript">
     window.addEventListener('scroll', () => {
         console.log("scrolling duuuude")

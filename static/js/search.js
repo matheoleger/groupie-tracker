@@ -66,9 +66,9 @@
 // console.log(searchLocations)
 
 
-let fetchSearchElements = ["/api/artists", "/api/locations"]
+// let fetchSearchElements = ["/api/artists", "/api/locations"]
 let searchArtistsData;
-let searchLocationsData;
+// let searchLocationsData;
 let i = 0
 // file = "search"
 
@@ -76,54 +76,80 @@ const loadSearchData = (response) => {
     // console.log("response:")
     // console.log(response)
 
-    if (i == 1) {
-        searchArtistsData = [...response]
-        console.log('this is')
-        console.log(searchArtistsData)
-    } else {
-        searchLocationsData = {...response}
-        console.log('this is')
-        console.log(searchLocationsData)
-    }
-    console.log(i)
-    i++
+    // if (i == 0) {
+    //     searchArtistsData = [...response]
+    //     console.log('this is')
+    //     console.log(searchArtistsData)
+    // } else {
+    //     searchLocationsData = {...response}
+    //     console.log('this is')
+    //     console.log(searchLocationsData)
+    // }
+    // console.log(i)
+    // i++
+
+    searchArtistsData = [...response];
+
 }
 
-fetch(fetchSearchElements[0])
+fetch("/api/artists")
 .then(response => response.json())
 .then(loadSearchData)
 
-fetch(fetchSearchElements[1])
-.then(response => response.json())
-.then(loadSearchData)
+// fetch(fetchSearchElements[1])
+// .then(response => response.json())
+// .then(loadSearchData)
 
 
 const search = (k) => {
     // console.log(k.key)
     
-    let searchbar = document.querySelector('#searchbar');
-    console.log(searchbar.value)
+    const searchbar = document.querySelector('#searchbar');
 
-    let regex = RegExp(searchbar.value.toUpperCase());
+    let rightElements = searchArtistsData.filter(artist => {
 
-    // if (regex.test(el.children[1].textContent.toUpperCase()) == true) {
+        const regex = RegExp(searchbar.value.toUpperCase());
+        return artist.name.toUpperCase().match(regex)
+    })
 
-    for (element of searchArtistsData) {
-        let divEl = document.getElementById(element.id)
+    console.log(rightElements)
 
-        if (regex.test(element.name.toUpperCase()) == true) {
-            if(divEl == null || element.id != divEl.id) {
-                displayAnElement(element)
-            }
-            
-        } else {
+    const listAutocomp = document.querySelector('.list-autocomp')
+    removeAllChildNodes(listAutocomp)
 
-            if (divEl != null) {
-                divEl.remove()
-            }
-            
-        }
+    for (element of rightElements) {
+        displayAnElement(element)
     }
+
+    if (searchbar.value.length == 0) {
+        rightElements = []
+    }
+
+
+    // console.log(searchbar.value)
+
+    // let regex = RegExp(searchbar.value.toUpperCase());
+
+    // // if (regex.test(el.children[1].textContent.toUpperCase()) == true) {
+
+    // for (element of searchArtistsData) {
+    //     let divEl = document.getElementById(element.id)
+
+    //     if (regex.test(element.name.toUpperCase()) == true) {
+    //         if(divEl == null || element.id != divEl.id) {
+    //             displayAnElement(element)
+    //         }
+            
+    //     } else {
+
+    //         if (divEl != null) {
+    //             divEl.remove()
+    //         }
+            
+    //     }
+    // }
+
+
 
 }
 
@@ -131,12 +157,21 @@ const displayAnElement = (element) => {
     console.log(element.name)
 
     const listAutocomp = document.querySelector('.list-autocomp')
+
     let divEl = document.createElement("div")
     divEl.setAttribute('id', element.id)
+    divEl.classList.add("list-element")
+    
     let textEl = document.createTextNode(element.name)
 
     divEl.appendChild(textEl)
     listAutocomp.append(divEl)
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
 // searchbar = document.querySelector('#searchbar')

@@ -4,13 +4,13 @@
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="/information">Information</a></li>
-            <li><a href="/location">Localisation</a></li>
+            <li><a href="/artists">Information</a></li>
+            <li><a href="/locations">Localisation</a></li>
             <!-- <li><a href="#">À propos</a></li> -->
             
         </ul>
     </nav>
-    <input type="text" placeholder="Rechercher...">
+    <input type="text" placeholder="Rechercher..." id="searchbar" onkeyup="search(event)">
 </header>
 <script type="text/javascript">
     window.addEventListener('scroll', () => {
@@ -24,6 +24,6 @@
 
         parallax.style.transform = 'translateY(' + scrollPosition * .5 + 'px)';
     })
-
 </script>
+<script src="../../static/js/search.js"></script>
 {{ end }}

@@ -105,6 +105,13 @@ const search = (k) => {
     // console.log(k.key)
     
     const searchbar = document.querySelector('#searchbar');
+    const listAutocomp = document.querySelector('.list-autocomp')
+
+    //pour enlever la liste quand elle est vide
+    listAutocomp.style.display = "";
+
+    //pour aggrandir la case de recherche
+    searchbar.classList.add('biggest-searching')
 
     let rightElements = searchArtistsData.filter(artist => {
 
@@ -114,15 +121,19 @@ const search = (k) => {
 
     console.log(rightElements)
 
-    const listAutocomp = document.querySelector('.list-autocomp')
+    
     removeAllChildNodes(listAutocomp)
+
+    if (searchbar.value.length == 0) {
+
+        searchbar.classList.remove('biggest-searching')
+        listAutocomp.style.display = "none";
+        
+        rightElements = []
+    }
 
     for (element of rightElements) {
         displayAnElement(element)
-    }
-
-    if (searchbar.value.length == 0) {
-        rightElements = []
     }
 
 
@@ -156,15 +167,34 @@ const search = (k) => {
 const displayAnElement = (element) => {
     console.log(element.name)
 
+    //list of the elements
     const listAutocomp = document.querySelector('.list-autocomp')
 
+    // div of one element
     let divEl = document.createElement("div")
     divEl.setAttribute('id', element.id)
     divEl.classList.add("list-element")
-    
-    let textEl = document.createTextNode(element.name)
 
-    divEl.appendChild(textEl)
+    // content of one element
+    contentImage = document.createElement('img');
+    contentImage.setAttribute("src", element.image);
+    divEl.appendChild(contentImage);
+
+
+    divForSpan = document.createElement('div')
+    divForSpan.classList.add("div-of-span") 
+
+    contentKeySpan = document.createElement('span');
+    let textKey = document.createTextNode(Object.keys(element)[2]);
+    contentKeySpan.appendChild(textKey);
+    
+    contentTextSpan = document.createElement('span');
+    let textEl = document.createTextNode(element.name);
+    contentTextSpan.appendChild(textEl);
+
+    divForSpan.appendChild(contentKeySpan)
+    divForSpan.appendChild(contentTextSpan)
+    divEl.appendChild(divForSpan)
     listAutocomp.append(divEl)
 }
 

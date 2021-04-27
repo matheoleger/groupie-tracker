@@ -1,7 +1,12 @@
 const fetchSearchArtists = "/api/artists"
-const artistsDAta;
+let artistsDAta;
 
 const loadArtistsData =  (reponse) => {
     artistsDAta = [...reponse]
-    console.log('res : ' + artistsDAta)
+    console.log('res : ')
+    console.log(artistsDAta)
 }
+
+fetch(fetchSearchArtists)
+.then(response => response.json())
+.then(loadArtistsData)

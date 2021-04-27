@@ -101,7 +101,7 @@ fetch("/api/artists")
 // .then(loadSearchData)
 
 
-const search = (k) => {
+const search = () => {
     // console.log(k.key)
     
     const searchbar = document.querySelector('#searchbar');
@@ -113,15 +113,21 @@ const search = (k) => {
     //pour aggrandir la case de recherche
     searchbar.classList.add('biggest-searching')
 
-    let rightElements = searchArtistsData.filter(artist => {
+    // let rightElements = searchArtistsData.filter(artist => {
 
-        const regex = RegExp(searchbar.value.toUpperCase());
-        return artist.name.toUpperCase().match(regex)
-    })
+    //     const regex = RegExp(searchbar.value.toUpperCase());
 
-    console.log(rightElements)
+    //     for (let i = 0; i < artist.members.length; i++) {
+    //         if (artist.members[i].toUpperCase().match(regex)) {
 
-    
+    //         }
+    //     }
+
+    //     return artist.name.toUpperCase().match(regex)
+    // })
+
+    // console.log(rightElements)
+
     removeAllChildNodes(listAutocomp)
 
     if (searchbar.value.length == 0) {
@@ -129,12 +135,53 @@ const search = (k) => {
         searchbar.classList.remove('biggest-searching')
         listAutocomp.style.display = "none";
         
-        rightElements = []
+        // rightElements = []
     }
 
-    for (element of rightElements) {
-        displayAnElement(element)
+
+    for (element of searchArtistsData) {
+        
+        // let obj = {
+        //     name: "",
+        //     members: "",
+        //     firstAlbum: 0,
+        //     creationDate: "0",
+        //     location: "",
+        // }
+
+        let obj = Object.create(element)
+        const regex = RegExp(searchbar.value.toUpperCase());
+
+        if(regex.test(element.name.toUpperCase())) {
+            obj.name = element.name
+        }
+
+        if(regex.test(element.firstAlbum.toUpperCase())) {
+            obj.firstAlbum = element.firstAlbum
+        }
+
+        if(regex.test(element.creationDate.toString().toUpperCase())) {
+            obj.creationDate = element.creationDate
+        }
+
+        for(member of element.members) {
+            
+        }
+        
+        // obj.firstAlbum = "19 701"
+        if (Object.keys(obj).length != 0) {
+            console.log(obj)
+            obj.image = element.image
+            displayAnElement(obj)
+        }
+        
+
     }
+
+    
+    // for (element of rightElements) {
+    //     displayAnElement(element)
+    // }
 
 
     // console.log(searchbar.value)
@@ -165,38 +212,83 @@ const search = (k) => {
 }
 
 const displayAnElement = (element) => {
-    console.log(element.name)
 
     //list of the elements
     const listAutocomp = document.querySelector('.list-autocomp')
 
-    // div of one element
-    let divEl = document.createElement("div")
-    divEl.setAttribute('id', element.id)
-    divEl.classList.add("list-element")
 
-    // content of one element
-    contentImage = document.createElement('img');
-    contentImage.setAttribute("src", element.image);
-    divEl.appendChild(contentImage);
+    for (const [key, value] of Object.entries(element)) {
+
+        // div of one element
+        let divEl = document.createElement("div")
+        divEl.setAttribute('id', element.id)
+        divEl.classList.add("list-element")
+
+        if (key == "image") {
+            continue
+        }
+
+        let contentImage = document.createElement('img');
+        contentImage.setAttribute("src", element.image);
+        divEl.appendChild(contentImage);
 
 
-    divForSpan = document.createElement('div')
-    divForSpan.classList.add("div-of-span") 
+        let divForSpan = document.createElement('div')
+        divForSpan.classList.add("div-of-span") 
 
-    contentKeySpan = document.createElement('span');
-    let textKey = document.createTextNode(Object.keys(element)[2]);
-    contentKeySpan.appendChild(textKey);
-    
-    contentTextSpan = document.createElement('span');
-    let textEl = document.createTextNode(element.name);
-    contentTextSpan.appendChild(textEl);
+        let contentKeySpan = document.createElement('span');
+        let textKey = document.createTextNode(key);
+        contentKeySpan.appendChild(textKey);
+        
+        let contentTextSpan = document.createElement('span');
+        let textEl = document.createTextNode(value);
+        contentTextSpan.appendChild(textEl);
 
-    divForSpan.appendChild(contentKeySpan)
-    divForSpan.appendChild(contentTextSpan)
-    divEl.appendChild(divForSpan)
-    listAutocomp.append(divEl)
+
+        divForSpan.appendChild(contentKeySpan)
+        divForSpan.appendChild(contentTextSpan)
+        divEl.appendChild(divForSpan)
+        listAutocomp.append(divEl)
+    }
+
+
 }
+
+
+
+// const displayAnElement = (element) => {
+//     console.log(element.name)
+
+//     //list of the elements
+//     const listAutocomp = document.querySelector('.list-autocomp')
+
+//     // div of one element
+//     let divEl = document.createElement("div")
+//     divEl.setAttribute('id', element.id)
+//     divEl.classList.add("list-element")
+
+//     // content of one element
+//     contentImage = document.createElement('img');
+//     contentImage.setAttribute("src", element.image);
+//     divEl.appendChild(contentImage);
+
+
+//     divForSpan = document.createElement('div')
+//     divForSpan.classList.add("div-of-span") 
+
+//     contentKeySpan = document.createElement('span');
+//     let textKey = document.createTextNode(Object.keys(element)[2]);
+//     contentKeySpan.appendChild(textKey);
+    
+//     contentTextSpan = document.createElement('span');
+//     let textEl = document.createTextNode(element.name);
+//     contentTextSpan.appendChild(textEl);
+
+//     divForSpan.appendChild(contentKeySpan)
+//     divForSpan.appendChild(contentTextSpan)
+//     divEl.appendChild(divForSpan)
+//     listAutocomp.append(divEl)
+// }
 
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {

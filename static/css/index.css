@@ -28,7 +28,7 @@ header {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: stretch;
     /* padding: 5px 2%; */
     text-transform: uppercase;
     color: #efc57c;
@@ -39,8 +39,11 @@ header {
 
 header.sticky {
     padding: 10px 50px;
-    background: rgba(0, 0, 0, 0.589);
-    
+    background: rgba(0, 0, 0, 0.589);   
+}
+
+nav {
+    margin-top: 45px;
 }
 
 nav li {
@@ -83,6 +86,60 @@ a {
 
 a:hover {
     background-position: 0 100%;
+}
+
+/*SEARCH*/
+.search-container {
+    margin-top: 47px;
+}
+
+.search-container input {
+    transition: ease 0.5s;
+}
+
+.list-autocomp {
+    overflow-y:scroll;
+    height: 200px;
+    /* position: fixed;
+    left: 81vw;
+    top: 100px; */
+    z-index: 100;
+    /* background-color: white; */
+    /* border-radius: 30px; */
+    color: white;
+    cursor: pointer;
+}
+
+.list-element {
+    transition: ease 0.5s;
+    display: flex;
+    background-color: rgba(35, 35, 35, 0.7);
+    border-bottom: rgba(255, 255, 255, 0.74) 1px solid ;
+    margin-left: 20px;
+    width: 325px;
+    padding: 20px 0px;
+    padding-left: 5px;
+}
+
+.list-element:hover {
+    background-color: rgba(87, 87, 87, 0.7);
+}
+
+.list-element img {
+    height: 50px;
+    width: auto;
+}
+
+.div-of-span {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.biggest-searching {
+    transition: ease 0.5s;
+    margin-top: -10px;
+    padding: 10px 40px;
 }
 
 

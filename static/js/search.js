@@ -66,9 +66,9 @@
 // console.log(searchLocations)
 
 
-let fetchSearchElements = ["/api/artists", "/api/locations"]
+// let fetchSearchElements = ["/api/artists", "/api/locations"]
 let searchArtistsData;
-let searchLocationsData;
+// let searchLocationsData;
 let i = 0
 // file = "search"
 
@@ -76,30 +76,132 @@ const loadSearchData = (response) => {
     // console.log("response:")
     // console.log(response)
 
-    if (i == 1) {
-        searchArtistsData = [...response]
-        console.log('this is')
-        console.log(searchArtistsData)
-    } else {
-        searchLocationsData = {...response}
-        console.log('this is')
-        console.log(searchLocationsData)
-    }
-    console.log(i)
-    i++
+    // if (i == 0) {
+    //     searchArtistsData = [...response]
+    //     console.log('this is')
+    //     console.log(searchArtistsData)
+    // } else {
+    //     searchLocationsData = {...response}
+    //     console.log('this is')
+    //     console.log(searchLocationsData)
+    // }
+    // console.log(i)
+    // i++
+
+    searchArtistsData = [...response];
+
 }
 
-fetch(fetchSearchElements[0])
+fetch("/api/artists")
 .then(response => response.json())
 .then(loadSearchData)
 
-fetch(fetchSearchElements[1])
-.then(response => response.json())
-.then(loadSearchData)
+// fetch(fetchSearchElements[1])
+// .then(response => response.json())
+// .then(loadSearchData)
 
 
 const search = (k) => {
-    console.log(k.key)
+    // console.log(k.key)
+    
+    const searchbar = document.querySelector('#searchbar');
+    const listAutocomp = document.querySelector('.list-autocomp')
+
+    //pour enlever la liste quand elle est vide
+    listAutocomp.style.display = "";
+
+    //pour aggrandir la case de recherche
+    searchbar.classList.add('biggest-searching')
+
+    let rightElements = searchArtistsData.filter(artist => {
+
+        const regex = RegExp(searchbar.value.toUpperCase());
+        return artist.name.toUpperCase().match(regex)
+    })
+
+    console.log(rightElements)
+
+    
+    removeAllChildNodes(listAutocomp)
+
+    if (searchbar.value.length == 0) {
+
+        searchbar.classList.remove('biggest-searching')
+        listAutocomp.style.display = "none";
+        
+        rightElements = []
+    }
+
+    for (element of rightElements) {
+        displayAnElement(element)
+    }
+
+
+    // console.log(searchbar.value)
+
+    // let regex = RegExp(searchbar.value.toUpperCase());
+
+    // // if (regex.test(el.children[1].textContent.toUpperCase()) == true) {
+
+    // for (element of searchArtistsData) {
+    //     let divEl = document.getElementById(element.id)
+
+    //     if (regex.test(element.name.toUpperCase()) == true) {
+    //         if(divEl == null || element.id != divEl.id) {
+    //             displayAnElement(element)
+    //         }
+            
+    //     } else {
+
+    //         if (divEl != null) {
+    //             divEl.remove()
+    //         }
+            
+    //     }
+    // }
+
+
+
+}
+
+const displayAnElement = (element) => {
+    console.log(element.name)
+
+    //list of the elements
+    const listAutocomp = document.querySelector('.list-autocomp')
+
+    // div of one element
+    let divEl = document.createElement("div")
+    divEl.setAttribute('id', element.id)
+    divEl.classList.add("list-element")
+
+    // content of one element
+    contentImage = document.createElement('img');
+    contentImage.setAttribute("src", element.image);
+    divEl.appendChild(contentImage);
+
+
+    divForSpan = document.createElement('div')
+    divForSpan.classList.add("div-of-span") 
+
+    contentKeySpan = document.createElement('span');
+    let textKey = document.createTextNode(Object.keys(element)[2]);
+    contentKeySpan.appendChild(textKey);
+    
+    contentTextSpan = document.createElement('span');
+    let textEl = document.createTextNode(element.name);
+    contentTextSpan.appendChild(textEl);
+
+    divForSpan.appendChild(contentKeySpan)
+    divForSpan.appendChild(contentTextSpan)
+    divEl.appendChild(divForSpan)
+    listAutocomp.append(divEl)
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
 // searchbar = document.querySelector('#searchbar')

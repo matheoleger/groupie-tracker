@@ -13,7 +13,7 @@ function getArtist() {
         nameBand = document.createElement('h2')
         nameBand.innerText = artistsData[i]['name']
         nameArtists = document.createElement('p')
-        nameArtists.innerText = artistsData[i]['name']
+        nameArtists.innerText = artistsData[i]['members']
         creationDate = document.createElement('p')
         creationDate.innerText =artistsData[i]['creationDate']
         firstDate = document.createElement('p')

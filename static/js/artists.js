@@ -1,5 +1,4 @@
-//const fetchSearchArtists = "/api/artists"
-
+//print the artists on the page
 function getArtist() {
     let artistsData = [...searchArtistsData];
     let band;
@@ -26,16 +25,3 @@ function getArtist() {
     }
      
 }
-
-/*
-
-/*const loadArtistsData =  (reponse) => {
-    artistsData = [...reponse]
-    console.log('res : ')
-    console.log(artistsData)
-}
-
-
-fetch(fetchSearchArtists)
-.then(response => response.json())
-.then(loadArtistsData)*/

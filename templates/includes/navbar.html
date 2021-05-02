@@ -24,11 +24,6 @@
         let header = document.querySelector("header");
         header.classList.toggle("sticky", window.scrollY > 0);
 
-        //pour le parallax
-        const parallax = document.querySelector('.parallax-bg');
-        let scrollPosition = window.pageYOffset;
-
-        parallax.style.transform = 'translateY(' + scrollPosition * .5 + 'px)';
     })
 </script>
 <script src="../../static/js/search.js"></script>

@@ -70,7 +70,7 @@ nav ul li a {
     display: inline-block;
     color: #523746;
     overflow: hidden;
-    background: linear-gradient(to right, #523746, #523746 50%, #84babc 50%);
+    background: linear-gradient(to right, #84babc, #84babc 50%, #e7e7e7 50%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -84,6 +84,7 @@ nav ul li a {
 nav ul li a:hover {
     background-position: 0 100%;
 }
+
 
 /*SEARCH*/
 .search-container {
@@ -253,10 +254,10 @@ video.bg-video {
     min-height: 80vh;
     width: 60%; */
 
-
-
+    overflow: hidden;
     background: white;
     min-height: 80vh;
+    max-height: 80vh;
     width: 60%;
     background: linear-gradient(to right bottom, rgba(255,255,255, 0.7), rgba(255,255,255, 0.3));
     border-radius: 2rem;
@@ -275,6 +276,7 @@ video.bg-video {
 }
 
 .more-info {
+    overflow: hidden;
     margin-top: 30px;
     display: flex;
     flex-direction: column;
@@ -344,5 +346,39 @@ video.bg-video {
     text-align:left;
     margin-left: 20px;
     font-size: 40px;
+}
+
+
+.location-content {
+    /* width: 100%;
+    padding-right: 20px; */
+    overflow-y:auto; 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.location-dates-content {
+    margin: 10px;
+    background-color: rgb(43, 43, 43);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.location-dates-content h2 {
+    font-size: 24px;
+}
+
+.location-content::-webkit-scrollbar {
+    width: 20px;
+}
+
+.location-content::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background: linear-gradient(to top, #84babc, #508385) ;
+}
+
+.location-content::-webkit-scrollbar-track {
+    border: rgb(43, 43, 43) 2px solid;
+    border-radius: 30px;
 }
 

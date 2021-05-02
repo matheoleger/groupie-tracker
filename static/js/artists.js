@@ -51,6 +51,14 @@ const showMore = (artistID) => {
     //for the "style"
     const showMoreElement = document.querySelector('.bg-showmore')
     showMoreElement.style.display = "flex";
+
+    const globalContent = document.querySelector(".global-content")
+    const memberContent = document.querySelector(".member-content")
+    const locationContent = document.querySelector('.location-content')
+
+    removeAllChildNodes(globalContent)
+    removeAllChildNodes(memberContent)
+    removeAllChildNodes(locationContent)
 }
 
 const displayMore = (artistInformations) => {
@@ -61,9 +69,9 @@ const displayMore = (artistInformations) => {
     const memberContent = document.querySelector(".member-content")
     const locationContent = document.querySelector('.location-content')
 
-    removeAllChildNodes(globalContent)
-    removeAllChildNodes(memberContent)
-    removeAllChildNodes(locationContent)
+    // removeAllChildNodes(globalContent)
+    // removeAllChildNodes(memberContent)
+    // removeAllChildNodes(locationContent)
 
     console.log(artistInformations.Artist.name)
 
@@ -108,7 +116,25 @@ const displayMore = (artistInformations) => {
         memberContent.append(valueSpan)
     }
 
-    for(location of )
+    for(const [key, values] of Object.entries(artistInformations.Relation.DatesLocations)) {
+        let locationDiv = document.createElement('div')
+        locationDiv.classList.add('location-dates-content')
+
+        let locationKey = document.createElement('h2')
+        let locationKeyText = document.createTextNode(key)
+        
+        locationKey.appendChild(locationKeyText)
+        locationDiv.append(locationKey)
+
+        for (value of values) {
+            let valueSpan = document.createElement('span')
+            let textValue = document.createTextNode(value)
+            valueSpan.appendChild(textValue)
+            locationDiv.append(valueSpan)
+        }
+
+        locationContent.append(locationDiv)
+    }
 }
 
 // for the "style"

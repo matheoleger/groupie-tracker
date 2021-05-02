@@ -1,5 +1,4 @@
 {{ define "body" }}
-<h1>Pages des artistes</h1>
 {{ if .Artists }}
     <div class="artists-el">   
         {{ range .Artists }}
@@ -42,5 +41,13 @@
 
 <script src="../static/js/artists.js">
     getArtist()
+</script>
+<script>
+    let header = document.querySelector("header");
+    header.style.position = 'sticky';
+    header.style.backgroundColor = 'rgba(0, 0, 0, 0.589)';
+
+   let main = document.querySelector('main')
+   main.style.marginTop = '20px';
 </script>
 {{ end }}

@@ -65,7 +65,7 @@ header input {
     background: none;
 }
 
-a {
+nav ul li a {
     position: relative;
     display: inline-block;
     color: #523746;
@@ -81,7 +81,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+nav ul li a:hover {
     background-position: 0 100%;
 }
 
@@ -225,3 +225,124 @@ video.bg-video {
     color: rgb(43, 43, 43);
     
 }
+
+/*SHOWMORE*/
+
+.bg-showmore {
+    transition: ease 0.4s;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);;
+    position: absolute;
+    top: 0;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+}
+
+.content-showmore {
+    /* position: fixed;
+    z-index: 110;
+    left: 20%;
+    top: 20%;
+    bottom: 50%;
+    right: 50%;
+    background: black;
+    min-height: 80vh;
+    width: 60%; */
+
+
+
+    background: white;
+    min-height: 80vh;
+    width: 60%;
+    background: linear-gradient(to right bottom, rgba(255,255,255, 0.7), rgba(255,255,255, 0.3));
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    display: flex;
+
+    font-size: 24px;
+    text-align: center;
+    color: white;
+}
+
+.global-content {
+    background: rgba(0, 0, 0, 0.425);
+    border-radius: 2rem;
+    width: 15vw;
+}
+
+.more-info {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.more-close::before {
+    content: "+";
+    font-size: 60px;
+    font-family: Arial;
+}
+
+.more-close {
+    transition: ease 0.4s;
+
+    color: white;
+    position: absolute;
+    z-index: 100;
+    right: 21vw;
+    top: 80px;
+    text-decoration: none;
+    /* top: 0px;
+    right: 14px; */
+    /* right: 60%; */
+
+    transform: rotate(45deg);
+}
+
+.more-close:hover {
+    color:#84babc;
+    transform: rotate(135deg);
+}
+
+.global-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.global-content img {
+    /* margin-left: 15px; */
+    width: 200px;
+    height: auto;
+    clip-path: circle(80px at center);
+}
+
+.key-span-showmore {
+    color:rgb(43, 43, 43);
+    text-transform: uppercase;
+}
+
+.member-content {
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.member-content span {
+    background-color: rgb(41, 41, 41);
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.more-info h1 {
+    text-transform: uppercase;
+    text-align:left;
+    margin-left: 20px;
+    font-size: 40px;
+}
+

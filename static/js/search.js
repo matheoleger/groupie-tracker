@@ -68,7 +68,7 @@
 
 // let fetchSearchElements = ["/api/artists", "/api/locations"]
 let searchArtistsData;
-// let searchLocationsData;
+let searchLocationsData;
 let i = 0
 // file = "search"
 
@@ -99,6 +99,13 @@ fetch("/api/artists")
 // fetch(fetchSearchElements[1])
 // .then(response => response.json())
 // .then(loadSearchData)
+
+fetch("/api/locations")
+.then(response => response.json())
+.then((response) => {
+    searchLocationsData = {...response}
+    console.log(searchLocationsData)
+})
 
 
 const search = () => {
@@ -138,6 +145,7 @@ const search = () => {
         // rightElements = []
     }
 
+    const regex = RegExp(searchbar.value.toUpperCase());
 
     for (element of searchArtistsData) {
         
@@ -150,7 +158,7 @@ const search = () => {
         // }
 
         let obj = Object.create(element)
-        const regex = RegExp(searchbar.value.toUpperCase());
+        
 
         if(regex.test(element.name.toUpperCase())) {
             obj.name = element.name
@@ -164,9 +172,20 @@ const search = () => {
             obj.creationDate = element.creationDate
         }
 
+        
+
         for(member of element.members) {
-            
+            if(regex.test(member.toString().toUpperCase())) {
+                // obj.members.push(member)
+                console.log(member)
+
+                let newMembers = []
+                newMembers.push(member)
+                obj.members = newMembers
+            }
         }
+
+        
         
         // obj.firstAlbum = "19 701"
         if (Object.keys(obj).length != 0) {
@@ -176,6 +195,26 @@ const search = () => {
         }
         
 
+    }
+
+    for (element of searchLocationsData.index) {
+        console.log(element)
+
+
+        for (eachLocation of element.locations) {
+
+            let isSameLocRegex = RegExp(eachLocation)
+
+            let objLoc = {};
+            if(regex.test(eachLocation.toString().toUpperCase())) {
+               objLoc = {locations: eachLocation}
+            }
+
+            if (Object.keys(objLoc).length != 0) {
+                objLoc.image = "../static/img/pin-w.png"
+                displayAnElement(objLoc)
+            }
+        }
     }
 
     
@@ -215,7 +254,9 @@ const displayAnElement = (element) => {
 
     //list of the elements
     const listAutocomp = document.querySelector('.list-autocomp')
-
+    const listLocations = document.querySelectorAll('.locations')
+    
+    listLocations.filter()
 
     for (const [key, value] of Object.entries(element)) {
 
@@ -242,6 +283,10 @@ const displayAnElement = (element) => {
         
         let contentTextSpan = document.createElement('span');
         let textEl = document.createTextNode(value);
+        if (element.locations != "undefined") {
+            // console.log("je suis a " + element.locations)
+            contentTextSpan.classList.add('locations')
+        }
         contentTextSpan.appendChild(textEl);
 
 
@@ -250,7 +295,6 @@ const displayAnElement = (element) => {
         divEl.appendChild(divForSpan)
         listAutocomp.append(divEl)
     }
-
 
 }
 

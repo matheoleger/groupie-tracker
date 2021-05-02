@@ -39,3 +39,19 @@ function getArtist() {
 fetch(fetchSearchArtists)
 .then(response => response.json())
 .then(loadArtistsData)*/
+
+
+const showMore = (artistID) => {
+    // const artist = document.querySelector(artistID)
+
+    fetch(`/artists/showmore?id=${artistID}`)
+    .then(response => response.json())
+    .then(displayMore)
+}
+
+const displayMore = (artistInformations) => {
+    console.log("ceci est artistInfor.. : ")
+    console.log(artistInformations)
+
+    
+}

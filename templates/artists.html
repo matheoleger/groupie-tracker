@@ -1,5 +1,27 @@
 {{ define "body" }}
 <h1>Pages des artistes</h1>
+{{ if .Artists }}
+    <div class="artists-el">   
+        {{ range .Artists }}
+            <div class="artist">
+                <img src="{{ .Image }}" class="artists-img">
+                <div class="artist-text-el">
+                    <span class="artist-name">{{ .Name }}</span>
+                    <div> 
+                        <span>Creation date</span><span>{{ .CreationDate }}</span>
+                    </div>
+                    <div> 
+                        <span>First Album</span><span>{{ .FirstAlbum }}</span>
+                    </div>     
+                    <!-- <form action="/artists/showmore" method="POST"> -->
+                    <button id="{{ .ID }}" class="btn-showmore" onclick="showMore(this.id)">Voir plus...</button>
+                    <!-- </form> -->
+                </div>
+                
+            </div>
+        {{end}}
+    </div>
+{{end}}
 <script src="../static/js/artists.js">
     getArtist()
 </script>

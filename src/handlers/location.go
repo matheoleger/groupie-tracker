@@ -6,7 +6,7 @@ import (
 	"text/template"
 )
 
-func Location(w http.ResponseWriter, r *http.Request) {
+func Locations(w http.ResponseWriter, r *http.Request) {
 
 	//ParseFiles très important : on doit y mettre toutes les pages qui doivent être chargé et donc choisir en fonction de celle qui doit l'être
 	// le choix doit être fait avant le ParseFiles

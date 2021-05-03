@@ -2,7 +2,7 @@
 <h1 id="subtitle-home">Find your favorite artist.</h1>
 <div class="parallax">
     <div class="parallax__layer parallax-bg">
-        <video autoplay mute loop class="bg-video">
+        <video autoplay muted loop class="bg-video">
             <source src="../static/videos/bg_groupie-tracker-v2.webm" type="video/webm">
         </video>        
     </div>
@@ -18,5 +18,6 @@
             parallax.style.transform = `translateY(${scrollPosition * .5}px)`;
         })
     </script>
+    <script src="../static/js/index.js"></script>
 </div>
 {{ end }}

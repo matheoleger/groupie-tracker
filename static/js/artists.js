@@ -1,5 +1,5 @@
 //print the artists on the page
-function getArtist() {
+/*function getArtist() {
     let artistsData = [...searchArtistsData];
     let band;
     let nameBand;
@@ -26,9 +26,8 @@ function getArtist() {
      
 }
 
-/*
 
-/*const loadArtistsData =  (reponse) => {
+const loadArtistsData =  (reponse) => {
     artistsData = [...reponse]
     console.log('res : ')
     console.log(artistsData)

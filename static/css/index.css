@@ -4,6 +4,7 @@
 }
 
 body {
+   
     font-family: 'Kanit';
     overflow-x: hidden;
     overflow-y: auto;
@@ -11,6 +12,8 @@ body {
 
 
 /* NAVBAR */
+
+
 
 .logo {
     height: 100px;

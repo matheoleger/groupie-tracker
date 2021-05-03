@@ -1,6 +1,53 @@
 {{ define "body" }}
-<h1>Pages des artistes</h1>
+{{ if .Artists }}
+    <div class="artists-el">   
+        {{ range .Artists }}
+            <div class="artist">
+                <img src="{{ .Image }}" class="artists-img">
+                <div class="artist-text-el">
+                    <span class="artist-name">{{ .Name }}</span>
+                    <div> 
+                        <span class="key-artist">Creation date</span><span>{{ .CreationDate }}</span>
+                    </div>
+                    <div> 
+                        <span class="key-artist">First Album</span><span>{{ .FirstAlbum }}</span>
+                    </div>     
+                    <!-- <form action="/artists/showmore" method="POST"> -->
+                    <button id="{{ .ID }}" class="btn-showmore" onclick="showMore(this.id)">Voir plus...</button>
+                    <!-- </form> -->
+                </div>
+                
+            </div>
+        {{end}}
+    </div>
+{{end}}
+<div class="bg-showmore" style="display: none"> 
+    <a href="#" class="more-close"></a>
+    <div class="content-showmore">
+        <div class="global-content">
+            <h1>test</h1>
+        </div>
+        <div class="more-info">
+            <h1>Members</h1>
+            <div class="member-content">
+            </div>
+            <h1>Locations</h1>
+            <div class="location-content">
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <script src="../static/js/artists.js">
     getArtist()
+</script>
+<script>
+    let header = document.querySelector("header");
+    header.style.position = 'sticky';
+    header.style.backgroundColor = 'rgba(0, 0, 0, 0.589)';
+
+   let main = document.querySelector('main');
+   main.style.marginTop = '20px';
 </script>
 {{ end }}

@@ -1,16 +1,16 @@
 /* Set the size of the div element that contains the map */
  /* Set the size of the div element that contains the map */
  #map {
-    height: 400px;
+    height: 550px;
     /* The height is 400 pixels */
-    width: 100%;
+    width: 70%;
     /* The width is the width of the web page */
-    
+    margin-left: 15%;
+
+    margin-top: 5%;
+
+    box-shadow: 10px 5px 5px rgba(87, 87, 87, 0.7);
+
  
   }
 
-.mapdblock {
-    box-shadow: 10px 5px 5px black;
-
-
-}

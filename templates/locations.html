@@ -1,10 +1,7 @@
 {{ define "body" }}
 
 <link rel="stylesheet" type="text/css" href="../static/css/locations.css">
-
 <script src="../static/js/location.js"></script>
-
-
 
 <script>
   // Pour le header
@@ -15,7 +12,10 @@
 
 </script>
     <!--The div element for the map -->
-    <div id="map"></div>
+    <div class="mapcontain">
+      <div id="map"></div>
+    </div>
+    
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
@@ -25,19 +25,5 @@
       async
     ></script>
 
-
-
-
-  
-
-<div class="mapblock">
-  
-<h1>salut</h1>
-
-
-
-</div>
-
- 
 
 {{ end }}

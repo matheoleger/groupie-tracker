@@ -15,8 +15,8 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	http.HandleFunc("/", handlers.Global)
-	http.HandleFunc("/locations", handlers.Location)
-	http.HandleFunc("/artists", handlers.Artists)
+	http.HandleFunc("/locations", handlers.Locations)
+	http.HandleFunc("/artists/", handlers.Artists)
 
 	// GET les APIs quand il y a un "fetch" aux chemins ci-dessous
 	http.HandleFunc("/api/artists", handlers.GetApi)

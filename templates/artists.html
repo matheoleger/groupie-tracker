@@ -7,10 +7,10 @@
                 <div class="artist-text-el">
                     <span class="artist-name">{{ .Name }}</span>
                     <div> 
-                        <span>Creation date</span><span>{{ .CreationDate }}</span>
+                        <span class="key-artist">Creation date</span><span>{{ .CreationDate }}</span>
                     </div>
                     <div> 
-                        <span>First Album</span><span>{{ .FirstAlbum }}</span>
+                        <span class="key-artist">First Album</span><span>{{ .FirstAlbum }}</span>
                     </div>     
                     <!-- <form action="/artists/showmore" method="POST"> -->
                     <button id="{{ .ID }}" class="btn-showmore" onclick="showMore(this.id)">Voir plus...</button>
@@ -47,7 +47,7 @@
     header.style.position = 'sticky';
     header.style.backgroundColor = 'rgba(0, 0, 0, 0.589)';
 
-   let main = document.querySelector('main')
+   let main = document.querySelector('main');
    main.style.marginTop = '20px';
 </script>
 {{ end }}

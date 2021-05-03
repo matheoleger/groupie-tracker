@@ -206,6 +206,12 @@ video.bg-video {
     padding: -3px;
 }
 
+.key-artist {
+    text-transform: uppercase;
+    margin-right: 10px;
+    color:rgb(109, 109, 109);
+}
+
 .btn-showmore {
     transition: ease 0.3s;
     margin-top: 10px;

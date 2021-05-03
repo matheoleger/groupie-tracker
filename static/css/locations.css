@@ -3,14 +3,26 @@
  #map {
     height: 550px;
     /* The height is 400 pixels */
-    width: 70%;
+    width: 100%;
     /* The width is the width of the web page */
-    margin-left: 15%;
-
-    margin-top: 5%;
-
-    box-shadow: 10px 5px 5px rgba(87, 87, 87, 0.7);
+    
+        
 
  
   }
+#mapcontain{
 
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+      -moz-box-shadow:    inset 0 0 10px rgba(87, 87, 87, 0.7);
+      -webkit-box-shadow: inset 0 0 10px rgba(87, 87, 87, 0.7);
+      box-shadow:         inset 0 0 10px rgba(87, 87, 87, 0.7);
+
+    width: 88vw;
+    margin-top: 5%;
+    margin-left: 5%;
+  
+}

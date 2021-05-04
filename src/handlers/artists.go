@@ -39,8 +39,7 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
-
-		// id := r.URL.Query().Get("id")
+		/* id := r.URL.Query().Get("id")
 		// if id != "" {
 		// 	fmt.Println(id)
 
@@ -73,7 +72,7 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 
 		// 	w.Header().Set("Content-Type", "application/json")
 		// 	w.Write(moreInformationPage)
-		// }
+		// }*/
 
 		ts.Execute(w, pageArtists)
 

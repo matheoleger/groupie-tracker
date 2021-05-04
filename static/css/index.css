@@ -6,6 +6,7 @@
 body {
    
     font-family: 'Kanit';
+    font-weight: bold;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -153,11 +154,11 @@ video.bg-video {
 
 .regular {
     position: relative;
-    background-color: aliceblue;
+    background-color: rgb(241, 241, 241);
     text-align: center;
     padding-top: 10vh;
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw;
+    height: 100vh; */
     z-index: 2;
 }
 
@@ -171,6 +172,60 @@ video.bg-video {
     z-index: 1;
 }
 
+/*INDEX PAGE*/
+
+.explication-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.explication-content img {
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.explication-element {
+    display: flex;
+    text-align: justify;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.explication-element-text {
+    margin-left: -40px;
+    z-index: 10;
+    margin-right: -40px;
+    width: 300px;
+    height: 85%;
+    background-color: rgb(41, 41, 41);
+    border-radius: 10px;
+    color: rgb(241, 241, 241);
+    padding: 10px;
+    font-weight: normal;
+}
+
+.explication-element-text h1 {
+    font-size: 30px;
+    text-align: left;
+}
+
+.explication-element-text a {
+    text-decoration: none;
+    color: #84babc;
+}
+
+.rectangle {
+    background-color: rgb(241, 241, 241);
+    height: 10px;
+    width: 100px;
+    margin: 20px 0px;
+}
+
+
 /*ARTISTS PAGE*/
 .artists-el {
     display: grid;
@@ -180,7 +235,7 @@ video.bg-video {
     grid-template-rows: repeat(18, 200px);
     column-gap: 50px;
     row-gap: 50px;
-    font-weight: lighter;
+    /* font-weight: lighter; */
 }
 
 .artist {   
@@ -348,6 +403,7 @@ video.bg-video {
     margin-left: 20px;
     margin-top: 15px;
     padding: 10px;
+    font-weight: normal;
 }
 
 .more-info h1 {
@@ -364,6 +420,7 @@ video.bg-video {
     overflow-y:auto; 
     display: flex;
     flex-wrap: wrap;
+    font-weight: normal;
 }
 
 .location-dates-content {
@@ -371,6 +428,11 @@ video.bg-video {
     background-color: rgb(43, 43, 43);
     border-radius: 10px;
     padding: 10px;
+}
+
+.location-dates-content span {
+    display: flex;
+    flex-direction: column;
 }
 
 .location-dates-content h2 {

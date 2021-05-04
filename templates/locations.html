@@ -1,5 +1,5 @@
 {{ define "body" }}
-
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <link rel="stylesheet" type="text/css" href="../static/css/locations.css">
 <script src="../static/js/location.js"></script>
 
@@ -8,13 +8,20 @@
   let header = document.querySelector("header");
   header.style.position = 'sticky';
   header.style.backgroundColor = 'rgba(0, 0, 0, 0.589)';
-
-
 </script>
+
+
     <!--The div element for the map -->
     <div id="mapcontain">
       <div id="map"></div>
     </div>
+      
+    
+      <input id="address" type="textbox" value="Sydney, NSW" />
+      <input id="submit" type="button" value="Geocode" />
+    
+
+    
     
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->

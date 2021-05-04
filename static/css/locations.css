@@ -10,7 +10,7 @@
 
  
   }
-#mapcontain{
+  #mapcontain{
 
     background-color: white;
     display: flex;
@@ -26,3 +26,5 @@
     margin-left: 5%;
   
 }
+
+

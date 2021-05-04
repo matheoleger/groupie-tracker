@@ -135,6 +135,39 @@ const search = () => {
 
                 displayResult(element)
             }
+
+            document.querySelectorAll('.list-element').forEach(item => {
+                item.addEventListener('click', event => {
+                    //handle click
+                    console.log(item)
+
+            
+                    // window.location.href = `/artists/`;
+
+                    // window.addEventListener("load", function(event) {
+                        // showMore(item.id)
+
+                        if (item.classList.contains('locations')) {
+                            window.location.href=`/locations?searchId=${item.id}`
+                        } else {
+                            window.location.href=`/artists/?searchId=${item.id}`
+                        }
+
+                        
+                        // test(item.id)
+
+                        // window.location.href = `/artists/`;
+
+                        // setTimeout(showMore(item.id), 5000)
+                    // });
+
+                    
+
+                    // fetch(`/artists/showmore?id=${item.id}`)
+                    // .then(response => response.json())
+                    // .then((response) => { console.log(response)})
+                })
+            })
         })
     }
 
@@ -153,6 +186,10 @@ const createGlobalElement = (divForSpan, spanValue, element, contentData) => {
     let contentSpan = document.createElement('span');
     let textKey = document.createTextNode(spanValue);
     contentSpan.appendChild(textKey);
+
+    if (spanValue == "Locations") {
+        contentData.classList.add('locations')
+    }
 
     divForSpan.appendChild(contentSpan)
     
@@ -214,6 +251,9 @@ const displayResult = (element) => {
 
     } 
 }
+
+
+
 
 // const search = () => {
 //     // console.log(k.key)

@@ -18,7 +18,12 @@ type Artist struct {
 }
 
 type Location struct {
-	Locations []string `json: locations`
+	// ID        int      `json:"id"`
+	// Locations []string `json: locations`
+	Index []struct {
+		ID        int      `json: id`
+		Locations []string `json: locations`
+	} `json: index`
 }
 
 type Date struct {
@@ -48,6 +53,35 @@ type PageDataArtists struct {
 type MoreInformationArtist struct {
 	Artist   Artist
 	Relation Relation
+}
+
+// type SearchResult struct {
+// 	NameOfArtistResult struct {
+// 		Id           []int
+// 		Image        []string
+// 		NameOfArtist []string
+// 	}
+// 	FirstAlbumResult struct {
+// 		Id         []int
+// 		Image      []string
+// 		FirstAlbum []string
+// 	}
+// 	CreationDateResult struct {
+// 		Id           []int
+// 		Image        []string
+// 		CreationDate []int
+// 	}
+// 	Locations []Location
+// }
+
+type SearchResult struct {
+	Id           int
+	Image        string
+	Name         string
+	FirstAlbum   string
+	CreationDate int
+	Members      []string
+	Locations    []string
 }
 
 // type MoreInformationArtist struct {

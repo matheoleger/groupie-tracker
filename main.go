@@ -18,6 +18,8 @@ func main() {
 	http.HandleFunc("/locations", handlers.Locations)
 	http.HandleFunc("/artists/", handlers.Artists)
 
+	http.HandleFunc("/search", handlers.Search)
+
 	// GET les APIs quand il y a un "fetch" aux chemins ci-dessous
 	http.HandleFunc("/api/artists", handlers.GetApi)
 	http.HandleFunc("/api/locations", handlers.GetApi)

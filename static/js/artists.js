@@ -39,27 +39,83 @@ function getArtist() {
 fetch(fetchSearchArtists)
 .then(response => response.json())
 .then(loadArtistsData)*/
+// let isBidouillage = false;
+// const isBidouillageFunc = () => {
+//     if(window.location.pathname == "/artists/") {
+//         window.addEventListener("DOMContentLoaded", (event) => {
+//             console.log("is ta daronne ?")
+//             isBidouillage = true;
+//         })
+//     }
+// }
+
+// const test = (idOfItem) => {
+//     window.location.href = `/artists/`;
+
+//     setTimeout(() => {
+//         window.addEventListener("load", (event) => {
+//             showMore(idOfItem)
+//         })
+//     }, 10000)
+
+// }
+
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+  
+// const test = (idOfItem) => {
+//     window.location.href = `/artists/`;
+//     console.log("Hello");
+//     sleep(2000).then(() => {      
+//             showMore(idOfItem)
+//     });
+// }
 
 
 const showMore = (artistID) => {
+
+    // if (window.location.pathname != "/artists/") {
+    //     window.location.replace = `/artists/`;
+    //     // isBidouillageFunc()
+    // }
+
+        fetch(`/artists/showmore?id=${artistID}`)
+        .then(response => response.json())
+        .then(displayMore)
+    
+        //for the "style"
+        const showMoreElement = document.querySelector('.bg-showmore')
+        showMoreElement.style.display = "flex";
+    
+        const globalContent = document.querySelector(".global-content")
+        const memberContent = document.querySelector(".member-content")
+        const locationContent = document.querySelector('.location-content')
+    
+        removeAllChildNodes(globalContent)
+        removeAllChildNodes(memberContent)
+        removeAllChildNodes(locationContent)
+
     // const artist = document.querySelector(artistID)
-
-    fetch(`/artists/showmore?id=${artistID}`)
-    .then(response => response.json())
-    .then(displayMore)
-
-    //for the "style"
-    const showMoreElement = document.querySelector('.bg-showmore')
-    showMoreElement.style.display = "flex";
-
-    const globalContent = document.querySelector(".global-content")
-    const memberContent = document.querySelector(".member-content")
-    const locationContent = document.querySelector('.location-content')
-
-    removeAllChildNodes(globalContent)
-    removeAllChildNodes(memberContent)
-    removeAllChildNodes(locationContent)
+    // window.addEventListener("load", (event) => {
+        // fetch(`/artists/showmore?id=${artistID}`)
+        // .then(response => response.json())
+        // .then(displayMore)
+    
+        // //for the "style"
+        // const showMoreElement = document.querySelector('.bg-showmore')
+        // showMoreElement.style.display = "flex";
+    
+        // const globalContent = document.querySelector(".global-content")
+        // const memberContent = document.querySelector(".member-content")
+        // const locationContent = document.querySelector('.location-content')
+    
+        // removeAllChildNodes(globalContent)
+        // removeAllChildNodes(memberContent)
+        // removeAllChildNodes(locationContent)
+    // })
 }
+
 
 const displayMore = (artistInformations) => {
     console.log("ceci est artistInfor.. : ")
@@ -144,3 +200,9 @@ buttonClose.addEventListener('click', () => {
     const showMoreElement = document.querySelector('.bg-showmore')
     showMoreElement.style.display = "none";
 })
+
+// let url = new URL(window.location.href)
+if (window.location.href.indexOf("?") >= 0) {
+    console.log("coucou")
+    showMore(window.location.search.split("=")[1])
+}

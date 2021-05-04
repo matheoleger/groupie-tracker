@@ -24,6 +24,8 @@ func Global(w http.ResponseWriter, r *http.Request) {
 		}
 
 		ts.Execute(w, nil)
+	} else if r.URL.Path == "/search" {
+
 	} else {
 		GetApi(w, r)
 	}

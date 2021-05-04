@@ -109,146 +109,253 @@ fetch("/api/locations")
 
 
 const search = () => {
-    // console.log(k.key)
-    
     const searchbar = document.querySelector('#searchbar');
     const listAutocomp = document.querySelector('.list-autocomp')
+    // const regex = RegExp(searchbar.value.toUpperCase());
 
     //pour enlever la liste quand elle est vide
     listAutocomp.style.display = "";
-
     //pour aggrandir la case de recherche
     searchbar.classList.add('biggest-searching')
-
-    // let rightElements = searchArtistsData.filter(artist => {
-
-    //     const regex = RegExp(searchbar.value.toUpperCase());
-
-    //     for (let i = 0; i < artist.members.length; i++) {
-    //         if (artist.members[i].toUpperCase().match(regex)) {
-
-    //         }
-    //     }
-
-    //     return artist.name.toUpperCase().match(regex)
-    // })
-
-    // console.log(rightElements)
-
-    removeAllChildNodes(listAutocomp)
 
     if (searchbar.value.length == 0) {
 
         searchbar.classList.remove('biggest-searching')
         listAutocomp.style.display = "none";
-        
-        // rightElements = []
-    }
-
-    const regex = RegExp(searchbar.value.toUpperCase());
-
-    for (element of searchArtistsData) {
-        
-        // let obj = {
-        //     name: "",
-        //     members: "",
-        //     firstAlbum: 0,
-        //     creationDate: "0",
-        //     location: "",
-        // }
-
-        let obj = Object.create(element)
-        
-
-        if(regex.test(element.name.toUpperCase())) {
-            obj.name = element.name
-        }
-
-        if(regex.test(element.firstAlbum.toUpperCase())) {
-            obj.firstAlbum = element.firstAlbum
-        }
-
-        if(regex.test(element.creationDate.toString().toUpperCase())) {
-            obj.creationDate = element.creationDate
-        }
-
-        
-
-        for(member of element.members) {
-            if(regex.test(member.toString().toUpperCase())) {
-                // obj.members.push(member)
-                console.log(member)
-
-                let newMembers = []
-                newMembers.push(member)
-                obj.members = newMembers
-            }
-        }
-
-        
-        
-        // obj.firstAlbum = "19 701"
-        if (Object.keys(obj).length != 0) {
-            console.log(obj)
-            obj.image = element.image
-            displayAnElement(obj)
-        }
-        
-
-    }
-
-    for (element of searchLocationsData.index) {
-        console.log(element)
-
-
-        for (eachLocation of element.locations) {
-
-            let isSameLocRegex = RegExp(eachLocation)
-
-            let objLoc = {};
-            if(regex.test(eachLocation.toString().toUpperCase())) {
-               objLoc = {locations: eachLocation}
-            }
-
-            if (Object.keys(objLoc).length != 0) {
-                objLoc.image = "../static/img/pin-w.png"
-                displayAnElement(objLoc)
-            }
-        }
-    }
-
     
-    // for (element of rightElements) {
-    //     displayAnElement(element)
-    // }
-
-
-    // console.log(searchbar.value)
-
-    // let regex = RegExp(searchbar.value.toUpperCase());
-
-    // // if (regex.test(el.children[1].textContent.toUpperCase()) == true) {
-
-    // for (element of searchArtistsData) {
-    //     let divEl = document.getElementById(element.id)
-
-    //     if (regex.test(element.name.toUpperCase()) == true) {
-    //         if(divEl == null || element.id != divEl.id) {
-    //             displayAnElement(element)
-    //         }
+    // rightElements = []
+    } else {
+        fetch(`/search?search=${searchbar.value}`)
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data)
             
-    //     } else {
+            removeAllChildNodes(listAutocomp)
+            for (element of data) {
 
-    //         if (divEl != null) {
-    //             divEl.remove()
-    //         }
-            
-    //     }
-    // }
-
-
+                displayResult(element)
+            }
+        })
+    }
 
 }
+
+const createGlobalElement = (divForSpan, spanValue, element, contentData) => {
+
+    //add image
+    if(element != undefined && contentData != undefined) {
+        let contentImage = document.createElement('img');
+        contentImage.setAttribute("src", element.Image);
+        contentData.appendChild(contentImage);
+    }
+
+    //add key or value
+    let contentSpan = document.createElement('span');
+    let textKey = document.createTextNode(spanValue);
+    contentSpan.appendChild(textKey);
+
+    divForSpan.appendChild(contentSpan)
+    
+}
+
+const displayResult = (element) => {
+    const listAutocomp = document.querySelector('.list-autocomp');
+
+
+    for (const [key, value] of Object.entries(element)) {
+
+        
+        if (value == "" || value == 0 || value == null || key == "Id" || key == "Image"){
+            continue
+        } else if (Array.isArray(value)) {
+                    
+            //add members or locations
+            for (el of value) {
+                let contentData = document.createElement("div")
+                contentData.setAttribute('id', element.Id)
+                contentData.classList.add("list-element")
+
+                let divForSpan = document.createElement('div')
+                divForSpan.classList.add("div-of-span")
+
+
+                createGlobalElement(divForSpan, key, element, contentData)
+                createGlobalElement(divForSpan, el)
+
+                contentData.append(divForSpan)
+                listAutocomp.append(contentData)
+            }
+
+        } else {
+            let contentData = document.createElement("div")
+            contentData.setAttribute('id', element.Id)
+            contentData.classList.add("list-element")
+
+            let divForSpan = document.createElement('div')
+            divForSpan.classList.add("div-of-span")
+
+            createGlobalElement(divForSpan, key, element, contentData)
+            createGlobalElement(divForSpan, value)
+
+            contentData.append(divForSpan)
+            listAutocomp.append(contentData)
+        }
+
+        // let contentData = document.createElement("div")
+        // contentData.setAttribute('id', element.Id)
+        // contentData.classList.add("list-element")
+        
+        // //add image
+        // let contentImage = document.createElement('img');
+        // contentImage.setAttribute("src", element.Image);
+        // contentData.appendChild(contentImage);
+
+
+
+    } 
+}
+
+// const search = () => {
+//     // console.log(k.key)
+    
+//     const searchbar = document.querySelector('#searchbar');
+//     const listAutocomp = document.querySelector('.list-autocomp')
+
+//     //pour enlever la liste quand elle est vide
+//     listAutocomp.style.display = "";
+
+//     //pour aggrandir la case de recherche
+//     searchbar.classList.add('biggest-searching')
+
+//     // let rightElements = searchArtistsData.filter(artist => {
+
+//     //     const regex = RegExp(searchbar.value.toUpperCase());
+
+//     //     for (let i = 0; i < artist.members.length; i++) {
+//     //         if (artist.members[i].toUpperCase().match(regex)) {
+
+//     //         }
+//     //     }
+
+//     //     return artist.name.toUpperCase().match(regex)
+//     // })
+
+//     // console.log(rightElements)
+
+//     removeAllChildNodes(listAutocomp)
+
+//     if (searchbar.value.length == 0) {
+
+//         searchbar.classList.remove('biggest-searching')
+//         listAutocomp.style.display = "none";
+        
+//         // rightElements = []
+//     }
+
+//     const regex = RegExp(searchbar.value.toUpperCase());
+
+//     for (element of searchArtistsData) {
+        
+//         // let obj = {
+//         //     name: "",
+//         //     members: "",
+//         //     firstAlbum: 0,
+//         //     creationDate: "0",
+//         //     location: "",
+//         // }
+
+//         let obj = Object.create(element)
+        
+
+//         if(regex.test(element.name.toUpperCase())) {
+//             obj.name = element.name
+//         }
+
+//         if(regex.test(element.firstAlbum.toUpperCase())) {
+//             obj.firstAlbum = element.firstAlbum
+//         }
+
+//         if(regex.test(element.creationDate.toString().toUpperCase())) {
+//             obj.creationDate = element.creationDate
+//         }
+
+        
+
+//         for(member of element.members) {
+//             if(regex.test(member.toString().toUpperCase())) {
+//                 // obj.members.push(member)
+//                 console.log(member)
+
+//                 let newMembers = []
+//                 newMembers.push(member)
+//                 obj.members = newMembers
+//             }
+//         }
+
+        
+        
+//         // obj.firstAlbum = "19 701"
+//         if (Object.keys(obj).length != 0) {
+//             console.log(obj)
+//             obj.image = element.image
+//             displayAnElement(obj)
+//         }
+        
+
+//     }
+
+//     for (element of searchLocationsData.index) {
+//         console.log(element)
+
+
+//         for (eachLocation of element.locations) {
+
+//             let isSameLocRegex = RegExp(eachLocation)
+
+//             let objLoc = {};
+//             if(regex.test(eachLocation.toString().toUpperCase())) {
+//                objLoc = {locations: eachLocation}
+//             }
+
+//             if (Object.keys(objLoc).length != 0) {
+//                 objLoc.image = "../static/img/pin-w.png"
+//                 displayAnElement(objLoc)
+//             }
+//         }
+//     }
+
+    
+//     // for (element of rightElements) {
+//     //     displayAnElement(element)
+//     // }
+
+
+//     // console.log(searchbar.value)
+
+//     // let regex = RegExp(searchbar.value.toUpperCase());
+
+//     // // if (regex.test(el.children[1].textContent.toUpperCase()) == true) {
+
+//     // for (element of searchArtistsData) {
+//     //     let divEl = document.getElementById(element.id)
+
+//     //     if (regex.test(element.name.toUpperCase()) == true) {
+//     //         if(divEl == null || element.id != divEl.id) {
+//     //             displayAnElement(element)
+//     //         }
+            
+//     //     } else {
+
+//     //         if (divEl != null) {
+//     //             divEl.remove()
+//     //         }
+            
+//     //     }
+//     // }
+
+
+
+// }
 
 const displayAnElement = (element) => {
 

@@ -64,9 +64,3 @@ function geocodeAddress(geocoder, resultsMap) {
     }
   });
 }
-  
-
-
-
-
-

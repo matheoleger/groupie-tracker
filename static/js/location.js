@@ -50,8 +50,9 @@ function initMap() {
 }
 
 function geocodeAddress(geocoder, resultsMap) {
-  const address = document.getElementById("address").value;
-  geocoder.geocode({ address: address }, (results, status) => {
+
+  const test =  window.location.search.split("=")[2];
+  geocoder.geocode({ address: test}, (results, status) => {
     if (status === "OK") {
       resultsMap.setCenter(results[0].geometry.location);
       new google.maps.Marker({

@@ -231,6 +231,12 @@ video.bg-video {
 
 
 /*ARTISTS PAGE*/
+.filter {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0px;
+}
+
 .artists-el {
     display: grid;
     justify-content: center;

@@ -66,7 +66,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		if !reflect.DeepEqual(sortingData, SearchResult{}) {
 			// fmt.Println("vide")
 			sortingData.Image = v.Image
-			sortingData.Id = v.ID
+			sortingData.Id = v.Id
 			finalArtistsListData = append(finalArtistsListData, sortingData)
 		}
 	}
@@ -88,7 +88,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		if !reflect.DeepEqual(sortingData, SearchResult{}) {
 
 			sortingData.Image = artistsList[i].Image
-			sortingData.Id = artistsList[i].ID
+			sortingData.Id = artistsList[i].Id
 			finalArtistsListData = append(finalArtistsListData, sortingData)
 		}
 	}

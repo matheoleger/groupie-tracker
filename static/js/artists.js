@@ -210,17 +210,17 @@ if (window.location.href.indexOf("?") >= 0) {
 }
 
 // Filter
-let oneArtist = document.querySelector('#one-artist')
-let group = document.querySelector('#group')
-let nbrOfMembers = document.querySelector('#number-of-members')
-let creationDateFilter = document.querySelector('#creation-date-filter')
-let firstAlbumFilter = document.querySelector('#first-album-filter')
+let oneArtist = document.querySelector('#one-artist');
+let group = document.querySelector('#group');
+let nbrOfMembers = document.querySelector('#number-of-members');
+let creationDateFilter = document.querySelector('#creation-date-filter');
+let firstAlbumFilter = document.querySelector('#first-album-filter');
 
-let oneArtistVal
-let groupVal
-let nbrOfMembersVal
-let creationDateFilterVal
-let firstAlbumFilterVal
+let oneArtistVal = true;
+let groupVal = true;
+let nbrOfMembersVal = nbrOfMembers.value;
+let creationDateFilterVal = creationDateFilter.value;
+let firstAlbumFilterVal = firstAlbumFilter.value;
 
 oneArtist.addEventListener('click', () => {
     if(oneArtist.checked == true) {
@@ -265,8 +265,37 @@ firstAlbumFilter.addEventListener('click', () => {
 })
 
 const filter = () => {
-    fetch(`/artist/filter?artist=${oneArtistVal}&group=${groupVal}&members=${nbrOfMembersVal}&creationDates=${creationDateFilterVal}&firstAlbum=${firstAlbumFilterVal}`)
+    fetch(`/artists/filter?artist=${oneArtistVal}&group=${groupVal}&members=${nbrOfMembersVal}&creationDates=${creationDateFilterVal}&firstAlbum=${firstAlbumFilterVal}`)
     .then(response => response.json())
-    .then(console.log(reponse))
+    .then(displayFilterEl)
+}
+
+const displayFilterEl = (filteredElements) => {
+    const divArtistsContent = document.querySelector('.artists-el')
+    removeAllChildNodes(divArtistsContent)
+
+    let htmlBuff = ""
+
+    for (element of filteredElements) {
+
+        console.log(element.Id)
+        htmlBuff += `
+        <div class="artist">
+            <img src="${element.Image}" class="artists-img">
+            <div class="artist-text-el">
+                <span class="artist-name">${element.name}</span>
+                <div> 
+                    <span class="key-artist">Creation date</span><span>${element.CreationDate}</span>
+                </div>
+                <div> 
+                    <span class="key-artist">First Album</span><span>${element.FirstAlbum}</span>                  
+                </div>     
+                <button id="${element.Id}" class="btn-showmore" onclick="showMore(this.id)">Voir plus...</button>
+            </div>   
+        </div>
+        `
+        divArtistsContent.innerHTML = htmlBuff
+    }
+
 }
 

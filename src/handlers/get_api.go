@@ -9,7 +9,7 @@ import (
 )
 
 type Artist struct {
-	ID           int      `json:"id"`
+	Id           int      `json:"id"`
 	Image        string   `json: image`
 	Name         string   `json:"name"`
 	Members      []string `json:members`
@@ -21,7 +21,7 @@ type Location struct {
 	// ID        int      `json:"id"`
 	// Locations []string `json: locations`
 	Index []struct {
-		ID        int      `json: id`
+		Id        int      `json: id`
 		Locations []string `json: locations`
 	} `json: index`
 }

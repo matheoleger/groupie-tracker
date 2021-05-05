@@ -141,6 +141,10 @@ const search = () => {
                     //handle click
                     console.log(item)
 
+                    let actualLoc = item.querySelectorAll("span")
+
+                    console.log(actualLoc)
+
             
                     // window.location.href = `/artists/`;
 
@@ -148,7 +152,7 @@ const search = () => {
                         // showMore(item.id)
 
                         if (item.classList.contains('locations')) {
-                            window.location.href=`/locations?searchId=${item.id}`
+                            window.location.href=`/locations?searchId=${item.id}&value=${actualLoc[1].textContent}`
                         } else {
                             window.location.href=`/artists/?searchId=${item.id}`
                         }

@@ -63,6 +63,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
+		//Vérification de si sortingData n'est pas vide
 		if !reflect.DeepEqual(sortingData, SearchResult{}) {
 			// fmt.Println("vide")
 			sortingData.Image = v.Image

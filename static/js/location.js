@@ -44,9 +44,12 @@ function initMap() {
       , lng: 2.213749 },
   });
   const geocoder = new google.maps.Geocoder();
-  document.getElementById("submit").addEventListener("click", () => {
-    geocodeAddress(geocoder, map);
-  });
+  //document.getElementById("submit").addEventListener("click", () => {
+   // geocodeAddress(geocoder, map);
+ // });
+ if (window.location.href.indexOf("?") >= 0){
+   geocodeAddress(geocoder, map);
+ }
 }
 
 function geocodeAddress(geocoder, resultsMap) {

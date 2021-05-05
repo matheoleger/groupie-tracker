@@ -28,9 +28,10 @@ Le projet contient 3 dossiers a la racine : src/handlers, static, templates et u
 ## :o: Element à améliorer :
 
 On aurait pu améliorer pas mal de chose :
-- **Premièrement**, L'utilisation de la map google a son maximum, comme par exemple utiliser les infoWindow pour le markeur.
+- **Premièrement**, L'utilisation de la map google, comme par exemple utiliser les infoWindow pour le markeur.
 
-- **Deuxièmement**, 
+- **Deuxièmement**, Le refactoring du code afin qu'il soit le plus propre possible 
+
 - **Troisièmement**,
 
 

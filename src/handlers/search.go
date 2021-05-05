@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"reflect"
@@ -13,20 +12,19 @@ import (
 func Search(w http.ResponseWriter, r *http.Request) {
 	searchValue := r.URL.Query().Get("search")
 
-	fmt.Println(searchValue)
-
+	//On récupère l'API "artist" puis on l'a "Unmarshal" afin de la mettre dans un tableau de Struct (struct basé sur un "Artist")
 	artistsData := GetAPI("/artists")
 	var artistsList []Artist
 	json.Unmarshal(artistsData, &artistsList)
 
+	//Pareil
 	locationsData := GetAPI("/locations")
-	// var locationsList []Location
 	var locationsList Location
 	json.Unmarshal(locationsData, &locationsList)
-	// fmt.Println(locationsList)
 
 	var finalArtistsListData []SearchResult
 
+	//Regex de la recherche avec le "(?i)" qui correspond à une mise en Majuscule
 	re := regexp.MustCompile(`(?i)` + searchValue)
 
 	for _, v := range artistsList {
@@ -34,26 +32,15 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		sortingData := SearchResult{}
 
 		if re.Match([]byte(v.Name)) {
-			// finalArtistsData.NameOfArtistResult.NameOfArtist = append(finalArtistsData.NameOfArtistResult.NameOfArtist, v.Name)
-			// finalArtistsData.NameOfArtistResult.Id = append(finalArtistsData.NameOfArtistResult.Id, v.ID)
-			// finalArtistsData.NameOfArtistResult.Image = append(finalArtistsData.NameOfArtistResult.Image, v.Image)
 			sortingData.Name = v.Name
 
 		}
 
 		if re.Match([]byte(v.FirstAlbum)) {
-			// finalArtistsData.FirstAlbumResult.FirstAlbum = append(finalArtistsData.FirstAlbumResult.FirstAlbum, v.FirstAlbum)
-			// finalArtistsData.FirstAlbumResult.Id = append(finalArtistsData.FirstAlbumResult.Id, v.ID)
-			// finalArtistsData.FirstAlbumResult.Image = append(finalArtistsData.FirstAlbumResult.Image, v.Image)
-
 			sortingData.FirstAlbum = v.FirstAlbum
 		}
 
 		if re.Match([]byte(strconv.Itoa(v.CreationDate))) {
-			// finalArtistsData.CreationDateResult.CreationDate = append(finalArtistsData.CreationDateResult.CreationDate, v.CreationDate)
-			// finalArtistsData.CreationDateResult.Id = append(finalArtistsData.CreationDateResult.Id, v.ID)
-			// finalArtistsData.CreationDateResult.Image = append(finalArtistsData.CreationDateResult.Image, v.Image)
-
 			sortingData.CreationDate = v.CreationDate
 		}
 
@@ -65,23 +52,18 @@ func Search(w http.ResponseWriter, r *http.Request) {
 
 		//Vérification de si sortingData n'est pas vide
 		if !reflect.DeepEqual(sortingData, SearchResult{}) {
-			// fmt.Println("vide")
 			sortingData.Image = v.Image
 			sortingData.Id = v.Id
 			finalArtistsListData = append(finalArtistsListData, sortingData)
 		}
 	}
 
-	// fmt.Println(locationsList)
-
 	for i, v := range locationsList.Index {
 
 		sortingData := SearchResult{}
-		// fmt.Println(("into the other loop"))
+
 		for _, eachLoc := range v.Locations {
-			// fmt.Println(("everything is not fine"))
 			if re.Match([]byte(eachLoc)) {
-				// fmt.Println(("everything is fine"))
 				sortingData.Locations = append(sortingData.Locations, eachLoc)
 			}
 		}

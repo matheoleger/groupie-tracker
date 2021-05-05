@@ -8,13 +8,11 @@ import (
 
 func Global(w http.ResponseWriter, r *http.Request) {
 
-	//ParseFiles très important : on doit y mettre toutes les pages qui doivent être chargé et donc choisir en fonction de celle qui doit l'être
-	// le choix doit être fait avant le ParseFiles
-
 	if r.URL.Path == "/" {
-		files := findPathFiles("./templates/index.html")
 
-		// ts, err := template.ParseFiles("./templates/layout.html", "./templates/index.html")
+		//ParseFiles très important : on doit y mettre toutes les pages qui doivent être chargé et donc choisir en fonction de celle qui doit l'être
+		// le choix doit être fait avant le ParseFiles
+		files := findPathFiles("./templates/index.html")
 		ts, err := template.ParseFiles(files...)
 
 		if err != nil {
@@ -25,7 +23,7 @@ func Global(w http.ResponseWriter, r *http.Request) {
 
 		ts.Execute(w, nil)
 	} else {
-		GetApi(w, r)
+		http.Error(w, "Page not found", 404)
 	}
 
 }

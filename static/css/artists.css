@@ -1,0 +1,232 @@
+/*ARTISTS PAGE*/
+.filter {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0px;
+}
+
+.artists-el {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 380px 380px 380px;
+    /* grid-template-rows: 200px;  */
+    grid-template-rows: repeat(18, 200px);
+    column-gap: 50px;
+    row-gap: 50px;
+    /* font-weight: lighter; */
+}
+
+.artist {   
+    background-color: #272727;
+    box-shadow: 0px 0px 10px rgb(31, 31, 31);
+    border-radius: 10px;
+    color:rgb(241, 241, 241);
+    display: flex;
+    flex-direction: row;
+    justify-content:start;
+    padding: 20px;
+    align-items: center;
+
+}
+
+.artist-text-el {
+    margin-left: 20px;
+}
+
+.artists-img {
+    width: 120px;
+    height: auto;
+}
+.artist-name {
+    font-size: 30px;
+    padding: -3px;
+}
+
+.key-artist {
+    text-transform: uppercase;
+    margin-right: 10px;
+    color:rgb(109, 109, 109);
+}
+
+.btn-showmore {
+    transition: ease 0.3s;
+    margin-top: 10px;
+    border-radius: 25px;
+    color: #84babc;
+    border: #84babc 2px solid;
+    background: none;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 5px 20px;
+}
+
+.btn-showmore:hover {
+    /* border: rgb(241, 241, 241) 2px solid; */
+    border: #84babc 2px solid;
+    /* background-color: rgb(241, 241, 241); */
+    background-color: #84babc;
+    color: rgb(43, 43, 43);
+    
+}
+
+/*SHOWMORE*/
+
+.bg-showmore {
+    transition: ease 0.4s;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);;
+    position: absolute;
+    top: 0;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+}
+
+.content-showmore {
+    /* position: fixed;
+    z-index: 110;
+    left: 20%;
+    top: 20%;
+    bottom: 50%;
+    right: 50%;
+    background: black;
+    min-height: 80vh;
+    width: 60%; */
+
+    overflow: hidden;
+    background: white;
+    min-height: 80vh;
+    max-height: 80vh;
+    width: 60%;
+    background: linear-gradient(to right bottom, rgba(255,255,255, 0.7), rgba(255,255,255, 0.3));
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    display: flex;
+
+    font-size: 24px;
+    text-align: center;
+    color: white;
+}
+
+.global-content {
+    background: rgba(0, 0, 0, 0.425);
+    border-radius: 2rem;
+    width: 15vw;
+}
+
+.more-info {
+    overflow: hidden;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.more-close::before {
+    content: "+";
+    font-size: 60px;
+    font-family: Arial;
+}
+
+.more-close {
+    transition: ease 0.4s;
+
+    color: white;
+    position: absolute;
+    z-index: 100;
+    right: 21vw;
+    top: 80px;
+    text-decoration: none;
+    /* top: 0px;
+    right: 14px; */
+    /* right: 60%; */
+
+    transform: rotate(45deg);
+}
+
+.more-close:hover {
+    color:#84babc;
+    transform: rotate(135deg);
+}
+
+.global-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.global-content img {
+    /* margin-left: 15px; */
+    width: 200px;
+    height: auto;
+    clip-path: circle(80px at center);
+}
+
+.key-span-showmore {
+    color:rgb(43, 43, 43);
+    text-transform: uppercase;
+}
+
+.member-content {
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.member-content span {
+    background-color: rgb(41, 41, 41);
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 15px;
+    padding: 10px;
+    font-weight: normal;
+}
+
+.more-info h1 {
+    text-transform: uppercase;
+    text-align:left;
+    margin-left: 20px;
+    font-size: 40px;
+}
+
+
+.location-content {
+    /* width: 100%;
+    padding-right: 20px; */
+    overflow-y:auto; 
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: normal;
+}
+
+.location-dates-content {
+    margin: 10px;
+    background-color: rgb(43, 43, 43);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.location-dates-content span {
+    display: flex;
+    flex-direction: column;
+}
+
+.location-dates-content h2 {
+    font-size: 24px;
+}
+
+.location-content::-webkit-scrollbar {
+    width: 20px;
+}
+
+.location-content::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background: linear-gradient(to top, #84babc, #508385) ;
+}
+
+.location-content::-webkit-scrollbar-track {
+    border: rgb(43, 43, 43) 2px solid;
+    border-radius: 30px;
+}

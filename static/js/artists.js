@@ -1,84 +1,4 @@
-//const fetchSearchArtists = "/api/artists"
-
-function getArtist() {
-    let artistsData = [...searchArtistsData];
-    let band;
-    let nameBand;
-    let nameArtists;
-    let creationDate;
-    let firstDate;
-    for (let i =0; i < artistsData.length;i++) {
-        band = document.createElement('div')
-        band.classList.add('band')
-        nameBand = document.createElement('h2')
-        nameBand.innerText = artistsData[i]['name']
-        nameArtists = document.createElement('p')
-        nameArtists.innerText = artistsData[i]['name']
-        creationDate = document.createElement('p')
-        creationDate.innerText =artistsData[i]['creationDate']
-        firstDate = document.createElement('p')
-        firstDate.innerText = artistsData[i]['firstAlbum']
-        band.appendChild(nameBand)
-        band.appendChild(nameArtists)
-        band.appendChild(creationDate)
-        band.appendChild(firstDate)
-        document.querySelector('main').appendChild(band)
-    }
-     
-}
-
-/*
-
-/*const loadArtistsData =  (reponse) => {
-    artistsData = [...reponse]
-    console.log('res : ')
-    console.log(artistsData)
-}
-
-
-fetch(fetchSearchArtists)
-.then(response => response.json())
-.then(loadArtistsData)*/
-// let isBidouillage = false;
-// const isBidouillageFunc = () => {
-//     if(window.location.pathname == "/artists/") {
-//         window.addEventListener("DOMContentLoaded", (event) => {
-//             console.log("is ta daronne ?")
-//             isBidouillage = true;
-//         })
-//     }
-// }
-
-// const test = (idOfItem) => {
-//     window.location.href = `/artists/`;
-
-//     setTimeout(() => {
-//         window.addEventListener("load", (event) => {
-//             showMore(idOfItem)
-//         })
-//     }, 10000)
-
-// }
-
-// function sleep(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-// }
-  
-// const test = (idOfItem) => {
-//     window.location.href = `/artists/`;
-//     console.log("Hello");
-//     sleep(2000).then(() => {      
-//             showMore(idOfItem)
-//     });
-// }
-
-
 const showMore = (artistID) => {
-
-    // if (window.location.pathname != "/artists/") {
-    //     window.location.replace = `/artists/`;
-    //     // isBidouillageFunc()
-    // }
 
         fetch(`/artists/showmore?id=${artistID}`)
         .then(response => response.json())
@@ -95,25 +15,6 @@ const showMore = (artistID) => {
         removeAllChildNodes(globalContent)
         removeAllChildNodes(memberContent)
         removeAllChildNodes(locationContent)
-
-    // const artist = document.querySelector(artistID)
-    // window.addEventListener("load", (event) => {
-        // fetch(`/artists/showmore?id=${artistID}`)
-        // .then(response => response.json())
-        // .then(displayMore)
-    
-        // //for the "style"
-        // const showMoreElement = document.querySelector('.bg-showmore')
-        // showMoreElement.style.display = "flex";
-    
-        // const globalContent = document.querySelector(".global-content")
-        // const memberContent = document.querySelector(".member-content")
-        // const locationContent = document.querySelector('.location-content')
-    
-        // removeAllChildNodes(globalContent)
-        // removeAllChildNodes(memberContent)
-        // removeAllChildNodes(locationContent)
-    // })
 }
 
 
@@ -124,10 +25,6 @@ const displayMore = (artistInformations) => {
     const globalContent = document.querySelector(".global-content")
     const memberContent = document.querySelector(".member-content")
     const locationContent = document.querySelector('.location-content')
-
-    // removeAllChildNodes(globalContent)
-    // removeAllChildNodes(memberContent)
-    // removeAllChildNodes(locationContent)
 
     console.log(artistInformations.Artist.name)
 
@@ -202,8 +99,6 @@ buttonClose.addEventListener('click', () => {
 })
 
 // for the search values (redirection)
-
-// let url = new URL(window.location.href)
 if (window.location.href.indexOf("?") >= 0) {
     console.log("coucou")
     showMore(window.location.search.split("=")[1])

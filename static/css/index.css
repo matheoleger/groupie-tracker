@@ -11,6 +11,10 @@ body {
     overflow-y: auto;
 }
 
+main {
+    padding-bottom: 20px;
+}
+
 
 /* NAVBAR */
 
@@ -154,7 +158,7 @@ video.bg-video {
 
 .regular {
     position: relative;
-    background-color: rgb(241, 241, 241);
+    /* background-color: rgb(241, 241, 241); */
     text-align: center;
     padding-top: 10vh;
     /* width: 100vw;

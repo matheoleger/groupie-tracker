@@ -1,4 +1,43 @@
 {{ define "body" }}
+
+<div class="filter">
+    <div class="group-or-artist-content">
+        <input type="checkbox" name="one-artist" id="one-artist" checked>
+        <label for="one-artist">artists</label>
+        <input type="checkbox" name="group" id="group" checked>
+        <label for="group">Groups</label>
+    </div>
+    <div class="number-member-content">
+        <label for="number-of-members">Number of members</label>
+        <input type="range" name="number-of-members" id="number-of-members" min="0" max="11" value="0">
+        <label for="number-of-members"> - </label>      
+    </div>
+    <div class="filter-creation-date-content">
+        <label for="creation-date">Creation Dates</label>
+        <select name="creation-date" id="creation-date-filter">
+            <option value="0">All dates</option>
+            <option value="1">1950 - 1960</option>
+            <option value="2">1961 - 1970</option>
+            <option value="3">1971 - 1980</option>
+            <option value="4">1981 - 1990</option>
+            <option value="5">1991 - 2000</option>
+            <option value="6">2000 - Today</option>
+        </select>
+    </div>
+    <div class="filter-first-album-content">
+        <label for="first-album">First Album</label>
+        <select name="first-album" id="first-album-filter">
+            <option value="0">All dates</option>
+            <option value="1">1950 - 1960</option>
+            <option value="2">1961 - 1970</option>
+            <option value="3">1971 - 1980</option>
+            <option value="4">1981 - 1990</option>
+            <option value="5">1991 - 2000</option>
+            <option value="6">2000 - Today</option>
+        </select>
+    </div>
+</div>
+
 {{ if .Artists }}
     <div class="artists-el">   
         {{ range .Artists }}

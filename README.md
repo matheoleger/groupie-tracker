@@ -3,7 +3,7 @@
 	# Groupie-Tracker
 
 ## :o: Comment ça marche 
-
+ Afin de lancer le serveur il suffit de se mettre à la raçine du groupie tracker et de taper "go run main.go" dans le terminal de VScode. Le site permet de voir des groupes de musique selon une base de données complète.
 
 ## :o: Explication du projet
 
@@ -32,7 +32,7 @@ On aurait pu améliorer pas mal de chose :
 
 - **Deuxièmement**, Le refactoring du code afin qu'il soit le plus propre possible 
 
-- **Troisièmement**,
+- **Troisièmement**, La gestion des erreurs plus pousser . 
 
 
 ## :o: Outils pour le projet :

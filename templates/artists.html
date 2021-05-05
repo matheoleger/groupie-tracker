@@ -12,6 +12,8 @@
                     </div>
                     <div> 
                         <span class="key-artist">First Album</span><span>{{ .FirstAlbum }}</span>
+                        
+
                     </div>     
                     <!-- <form action="/artists/showmore" method="POST"> -->
                     <button id="{{ .ID }}" class="btn-showmore" onclick="showMore(this.id)">Voir plus...</button>
@@ -40,9 +42,9 @@
     </div>
 </div>
 
-<script src="../static/js/artists.js">
+<!-- <script src="../static/js/artists.js">
     getArtist()
-</script>
+</script> -->
 <script>
     let header = document.querySelector("header");
     header.style.position = 'sticky';

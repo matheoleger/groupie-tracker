@@ -114,9 +114,16 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 			w.Write(moreInformationPage)
 		}
 
+	} else if r.URL.Path == "/artists/filter" {
+		Filter()
+
 	} else {
 		http.Error(w, "Page not found", 404)
 	}
 	// ts, err := template.ParseFiles("./templates/layout.html", "./templates/location.html")
+
+}
+
+func Filter() {
 
 }

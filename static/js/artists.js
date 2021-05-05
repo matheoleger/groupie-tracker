@@ -201,8 +201,72 @@ buttonClose.addEventListener('click', () => {
     showMoreElement.style.display = "none";
 })
 
+// for the search values (redirection)
+
 // let url = new URL(window.location.href)
 if (window.location.href.indexOf("?") >= 0) {
     console.log("coucou")
     showMore(window.location.search.split("=")[1])
 }
+
+// Filter
+let oneArtist = document.querySelector('#one-artist')
+let group = document.querySelector('#group')
+let nbrOfMembers = document.querySelector('#number-of-members')
+let creationDateFilter = document.querySelector('#creation-date-filter')
+let firstAlbumFilter = document.querySelector('#first-album-filter')
+
+let oneArtistVal
+let groupVal
+let nbrOfMembersVal
+let creationDateFilterVal
+let firstAlbumFilterVal
+
+oneArtist.addEventListener('click', () => {
+    if(oneArtist.checked == true) {
+        oneArtistVal = true
+    } else {
+        oneArtistVal = false
+    }
+
+    filter()    
+})
+
+group.addEventListener('click', () => {
+    if(group.checked == true) {
+        groupVal = true
+    } else {
+        groupVal = false
+    }
+
+    filter()
+})
+
+nbrOfMembers.addEventListener('click', () => {
+    console.log(nbrOfMembers.value)
+
+    nbrOfMembersVal = nbrOfMembers.value
+
+    filter()
+})
+
+creationDateFilter.addEventListener('click', () => {
+    creationDateFilterVal = creationDateFilter.value
+    console.log(creationDateFilterVal)
+
+    filter()
+})
+
+firstAlbumFilter.addEventListener('click', () => {
+    firstAlbumFilterVal = firstAlbumFilter.value
+    console.log(firstAlbumFilterVal)
+
+    filter()
+})
+
+const filter = () => {
+    fetch(`/artist/filter?artist=${oneArtistVal}&group=${groupVal}&members=${nbrOfMembersVal}&creationDates=${creationDateFilterVal}&firstAlbum=${firstAlbumFilterVal}`)
+    .then(response => response.json())
+    .then(console.log(reponse))
+}
+

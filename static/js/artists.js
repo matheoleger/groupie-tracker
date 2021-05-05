@@ -138,9 +138,19 @@ group.addEventListener('click', () => {
 })
 
 nbrOfMembers.addEventListener('click', () => {
-    console.log(nbrOfMembers.value)
+    
 
     nbrOfMembersVal = nbrOfMembers.value
+
+    //for the "style"
+    const labelOfMem = document.querySelector('#nbr-of-mem-val');
+
+    if (nbrOfMembers.value != 0) {
+        labelOfMem.textContent = `≥${nbrOfMembers.value}`
+    } else {
+        labelOfMem.textContent = "-"
+    }
+    
 
     filter()
 })
@@ -172,8 +182,6 @@ const displayFilterEl = (filteredElements) => {
     let htmlBuff = ""
 
     for (element of filteredElements) {
-
-        console.log(element.Id)
         htmlBuff += `
         <div class="artist">
             <img src="${element.Image}" class="artists-img">
@@ -185,12 +193,20 @@ const displayFilterEl = (filteredElements) => {
                 <div> 
                     <span class="key-artist">First Album</span><span>${element.FirstAlbum}</span>                  
                 </div>     
-                <button id="${element.Id}" class="btn-showmore" onclick="showMore(this.id)">Voir plus...</button>
+                <button id="${element.id}" class="btn-showmore" onclick="showMore(this.id)">Voir plus...</button>
             </div>   
         </div>
         `
         divArtistsContent.innerHTML = htmlBuff
     }
+
+    //for the "style"
+    const artistsContent = document.querySelector(".artists-el")
+
+    let nbrRows = Math.ceil(filteredElements.length / 3)
+
+    artistsContent.style.gridTemplateRows = `repeat(${nbrRows}, 200px)`
+
 
 }
 

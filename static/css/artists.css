@@ -5,12 +5,20 @@
     margin: 20px 0px;
 }
 
+.filter select {
+    border-radius: 10px;
+    background: rgb(41, 41, 41);
+    color:rgb(241, 241, 241);
+    font-family: "Kanit";
+    padding: 5px;
+}
+
 .artists-el {
     display: grid;
     justify-content: center;
     grid-template-columns: 380px 380px 380px;
     /* grid-template-rows: 200px;  */
-    grid-template-rows: repeat(18, 200px);
+    /* grid-template-rows: repeat(18, 200px); */
     column-gap: 50px;
     row-gap: 50px;
     /* font-weight: lighter; */

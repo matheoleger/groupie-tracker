@@ -10,7 +10,7 @@
     <div class="number-member-content">
         <label for="number-of-members">Number of members</label>
         <input type="range" name="number-of-members" id="number-of-members" min="0" max="11" value="0">
-        <label for="number-of-members"> - </label>      
+        <label for="number-of-members" id="nbr-of-mem-val"> - </label>      
     </div>
     <div class="filter-creation-date-content">
         <label for="creation-date">Creation Dates</label>
@@ -41,7 +41,7 @@
 </div>
 
 {{ if .Artists }}
-    <div class="artists-el">   
+    <div class="artists-el" style="grid-template-rows: repeat(18, 200px)">   
         {{ range .Artists }}
             <div class="artist">
                 <img src="{{ .Image }}" class="artists-img">

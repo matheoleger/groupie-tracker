@@ -453,3 +453,55 @@ video.bg-video {
     border-radius: 30px;
 }
 
+/*FOOTER*/
+footer {
+    height: 200px;
+    background-color:rgb(43, 43, 43);
+    color: #878787;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer h1 {
+    font-size: 22px;
+    margin-bottom: -10px;
+    font-weight: normal;
+}
+
+footer h2 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+footer img {
+    width: 22px;
+    height: 22px;
+    margin-left: 10px;
+}
+
+footer a {
+    text-decoration: none;
+    text-decoration: underline;
+    color: #878787;
+    
+}
+
+.line-footer {
+    height: 60px;
+    width: 3px;
+    background-color: #878787;
+    margin-left: 10px;
+}
+
+.link-footer {
+    font-weight: normal;
+    display: flex;
+    justify-content: stretch;
+
+}
+
+.link-footer a {
+    margin-left: 5px;
+}
+

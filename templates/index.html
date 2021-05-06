@@ -1,13 +1,42 @@
 {{ define "body" }}
-<h1 id="subtitle-home">Find your favorite artist.</h1>
+<h1 id="subtitle-home">FIND YOUR FAVORITE ARTISTS.</h1>
 <div class="parallax">
     <div class="parallax__layer parallax-bg">
-        <video autoplay muted loop class="bg-video">
+        <video autoplay muted loop playsinline class="bg-video">
             <source src="../static/videos/bg_groupie-tracker-v2.webm" type="video/webm">
         </video>        
     </div>
     <section class="parallax__layer regular">
-        <h1>Test text après la vidéo</h1>
+        <div class="explication-content">
+            <div class="explication-element">
+                <img src="../static/img/guitare.jpg">
+                <div class="explication-element-text">
+                    <h1>Les concerts de vos artistes préférés</h1>
+                    <div class="rectangle"></div>
+                    <p>
+                        Vous en avez marre de devoir chercher partout pour trouver les concerts et activités de vos artistes préférés ? <br>
+                        Composé d'une grande (c'est faux) base d'artistes plus différents les uns que les autres, ce site est la solution.
+                        Ce site vous propose de trouver les concerts de vos chanteurs et groupes favoris, n'importe où dans le monde ! <br>
+                        Alors ne cherchez plus et utilisez dès maintenant notre site internet. 
+                    </p>
+                    <a href="/artists/">Voir les artistes ➔</a>
+                </div>
+
+            </div>
+            <div class="explication-element">
+                <div class="explication-element-text">
+                    <h1>Un projet Ynovant !</h1>
+                    <div class="rectangle"></div>
+                    <p>
+                        Ce site vous ai proposé par l'équipe Get-Them-All ! Une équipe investi pour vous proposer la meilleure expérience web !
+                        Vous pouvez retrouver notre dépot Gitea <a href="https://git.ytrack.learn.ynov.com/MLEGER/groupie-tracker" target="_blank">ici</a> ainsi que le site d'ynov <a href="https://www.ynov-nantes.com/" target="_blank">ici</a>
+                    </p>
+                </div>
+                <img src="../static/img/ampoule.png">
+            </div>
+        </div>
+
+
     </section>
     <script type="text/javascript">
         window.addEventListener('scroll', () => {
@@ -18,6 +47,5 @@
             parallax.style.transform = `translateY(${scrollPosition * .5}px)`;
         })
     </script>
-    <script src="../static/js/index.js"></script>
 </div>
 {{ end }}

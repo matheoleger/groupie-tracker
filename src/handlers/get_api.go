@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -9,7 +8,7 @@ import (
 )
 
 type Artist struct {
-	ID           int      `json:"id"`
+	Id           int      `json:"id"`
 	Image        string   `json: image`
 	Name         string   `json:"name"`
 	Members      []string `json:members`
@@ -18,7 +17,10 @@ type Artist struct {
 }
 
 type Location struct {
-	Locations []string `json: locations`
+	Index []struct {
+		Id        int      `json: id`
+		Locations []string `json: locations`
+	} `json: index`
 }
 
 type Date struct {
@@ -29,48 +31,26 @@ type Relation struct {
 	DatesLocations interface{} `json: datesLocations`
 }
 
-// type PageDataArtists struct {
-// 	Artists       []Artist
-// 	LocationsList Location
-// 	Dates         Date
-// }
-
+//Pour la page artist par défaut
 type PageDataArtists struct {
 	Artists []Artist
 }
 
-// type MoreInformationArtist struct {
-// 	Artist        Artist
-// 	LocationsList Location
-// 	DatesList     Date
-// }
-
+//Pour un artist sur lequel on a appuyé sur "Voir plus..."
 type MoreInformationArtist struct {
 	Artist   Artist
 	Relation Relation
 }
 
-// type MoreInformationArtist struct {
-// 	// Artist   Artist
-// 	// Relation Relation
-// 	More []interface{}
-// }
-
-func GetApi(w http.ResponseWriter, r *http.Request) {
-
-	response, err := http.Get("https://groupietrackers.herokuapp.com" + r.URL.Path)
-
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
-	}
-
-	responseData, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	w.Write(responseData)
+// Pour la recherche (correspond à un artist mais pas forcément à une recherche possible)
+type SearchResult struct {
+	Id           int
+	Image        string
+	Name         string
+	FirstAlbum   string
+	CreationDate int
+	Members      []string
+	Locations    []string
 }
 
 func GetAPI(pathAPI string) []byte {
@@ -79,12 +59,11 @@ func GetAPI(pathAPI string) []byte {
 	response, err := http.Get(restAPI + pathAPI)
 
 	if err != nil {
-		fmt.Print(err.Error())
+		log.Print(err.Error())
 		os.Exit(1)
 	}
 
 	responseData, err := ioutil.ReadAll(response.Body)
-	// fmt.Println(string(responseData) + "coucou cest ici")
 	if err != nil {
 		log.Fatal(err)
 	}
